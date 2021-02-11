@@ -1,0 +1,157 @@
+﻿<UserControl x:Class="LightCheatEngine.LightCEDisasmControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:LightCheatEngine"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             mc:Ignorable="d" Loaded="UserControl_Loaded"
+             Height="600" Width="700">
+    <UserControl.Resources>
+        <ResourceDictionary Source="/DarkStyle;component/ControlDarkStyle.xaml"/>
+    </UserControl.Resources>
+    <ListView ScrollViewer.HorizontalScrollBarVisibility="Hidden" x:Name="LVMain" Foreground="White" Background="#FF252526"
+                  MouseDoubleClick="LVMain_MouseDoubleClick"  PreviewKeyDown="LVMain_KeyDown" ScrollViewer.ScrollChanged="LVMain_ScrollChanged"
+                  PreviewMouseWheel="LVMain_MouseWheel">
+        <ListView.View>
+            <GridView AllowsColumnReorder="False">
+                <GridViewColumn x:Name="GVCAddr" Width="102" DisplayMemberBinding="{Binding Address}">
+                    <GridViewColumn.Header>
+                        <TextBlock Text="地址">
+                            <TextBlock.Resources>
+                                <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                                    <sys:String>地址</sys:String>
+                                    <sys:String>Address</sys:String>
+                                </x:Array>
+                            </TextBlock.Resources>
+                        </TextBlock>
+                    </GridViewColumn.Header>
+                </GridViewColumn>
+                <GridViewColumn x:Name="GVCMCode" Width="271" DisplayMemberBinding="{Binding MachineCode}">
+                    <GridViewColumn.Header>
+                        <TextBlock Text="机器指令">
+                            <TextBlock.Resources>
+                                <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                                    <sys:String>机器指令</sys:String>
+                                    <sys:String>Machine code</sys:String>
+                                </x:Array>
+                            </TextBlock.Resources>
+                        </TextBlock>
+                    </GridViewColumn.Header>
+                </GridViewColumn>
+                <GridViewColumn x:Name="GVCAsmCode" Width="321" DisplayMemberBinding="{Binding AsmCode}">
+                    <GridViewColumn.Header>
+                        <TextBlock Text="汇编代码">
+                            <TextBlock.Resources>
+                                <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                                    <sys:String>汇编代码</sys:String>
+                                    <sys:String>Assembly code</sys:String>
+                                </x:Array>
+                            </TextBlock.Resources>
+                        </TextBlock>
+                    </GridViewColumn.Header>
+                </GridViewColumn>
+            </GridView>
+        </ListView.View>
+        <ListView.ContextMenu>
+            <ContextMenu Opened="ContextMenu_Opened">
+                <MenuItem Header="转到地址" InputGestureText="Ctrl+G" Click="MenuItem_Click">
+                    <MenuItem.Resources>
+                        <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                            <sys:String>转到地址</sys:String>
+                            <sys:String>Go to address</sys:String>
+                        </x:Array>
+                    </MenuItem.Resources>
+                </MenuItem>
+                <MenuItem Header="汇编" InputGestureText="Space" Click="MenuItem_Click_1">
+                    <MenuItem.Resources>
+                        <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                            <sys:String>汇编</sys:String>
+                            <sys:String>Assemble</sys:String>
+                        </x:Array>
+                    </MenuItem.Resources>
+                </MenuItem>
+                <MenuItem Header="用nop填充" InputGestureText="Delete" Click="MenuItem_Click_2">
+                    <MenuItem.Resources>
+                        <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                            <sys:String>用nop填充</sys:String>
+                            <sys:String>Fill with nop</sys:String>
+                        </x:Array>
+                    </MenuItem.Resources>
+                </MenuItem>
+                <MenuItem Header="申请内存" InputGestureText="Ctrl+D" Click="MenuItem_Click_8">
+                    <MenuItem.Resources>
+                        <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                            <sys:String>申请内存</sys:String>
+                            <sys:String>Alloc memory</sys:String>
+                        </x:Array>
+                    </MenuItem.Resources>
+                </MenuItem>
+                <MenuItem Header="跟随地址" Visibility="Collapsed" Name="MIFollow" InputGestureText="Enter" Click="MenuItem_Click_9">
+                    <MenuItem.Resources>
+                        <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                            <sys:String>跟随地址</sys:String>
+                            <sys:String>Follow address</sys:String>
+                        </x:Array>
+                    </MenuItem.Resources>
+                </MenuItem>
+                <MenuItem Header="退回地址" Visibility="Collapsed" Name="MIBack" InputGestureText="Backspace" Click="MIBack_Click">
+                    <MenuItem.Resources>
+                        <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                            <sys:String>退回地址</sys:String>
+                            <sys:String>Back to address</sys:String>
+                        </x:Array>
+                    </MenuItem.Resources>
+                </MenuItem>
+                <MenuItem Header="复制">
+                    <MenuItem.Resources>
+                        <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                            <sys:String>复制</sys:String>
+                            <sys:String>Copy</sys:String>
+                        </x:Array>
+                    </MenuItem.Resources>
+                    <MenuItem Header="地址" Click="MenuItem_Click_3">
+                        <MenuItem.Resources>
+                            <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                                <sys:String>地址</sys:String>
+                                <sys:String>Address</sys:String>
+                            </x:Array>
+                        </MenuItem.Resources>
+                    </MenuItem>
+                    <MenuItem Header="机器指令" Click="MenuItem_Click_4">
+                        <MenuItem.Resources>
+                            <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                                <sys:String>机器指令</sys:String>
+                                <sys:String>Machine code</sys:String>
+                            </x:Array>
+                        </MenuItem.Resources>
+                    </MenuItem>
+                    <MenuItem Header="汇编代码" Click="MenuItem_Click_5">
+                        <MenuItem.Resources>
+                            <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                                <sys:String>汇编代码</sys:String>
+                                <sys:String>Assembly code</sys:String>
+                            </x:Array>
+                        </MenuItem.Resources>
+                    </MenuItem>
+                </MenuItem>
+                <MenuItem Header="保存全部区域到可执行文件" InputGestureText="Ctrl+S" Click="MenuItem_Click_6">
+                    <MenuItem.Resources>
+                        <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                            <sys:String>保存全部区域到可执行文件</sys:String>
+                            <sys:String>Save this area to executable file</sys:String>
+                        </x:Array>
+                    </MenuItem.Resources>
+                </MenuItem>
+                <MenuItem Header="创建线程" InputGestureText="F5" Click="MenuItem_Click_7">
+                    <MenuItem.Resources>
+                        <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                            <sys:String>创建线程</sys:String>
+                            <sys:String>Create thread</sys:String>
+                        </x:Array>
+                    </MenuItem.Resources>
+                </MenuItem>
+            </ContextMenu>
+        </ListView.ContextMenu>
+    </ListView>
+</UserControl>

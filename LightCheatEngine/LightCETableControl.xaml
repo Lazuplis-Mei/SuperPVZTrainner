@@ -1,0 +1,111 @@
+﻿<UserControl x:Class="LightCheatEngine.LightCETableControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:LightCheatEngine"
+             xmlns:Themes="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             mc:Ignorable="d" Height="400" Width="500">
+    <UserControl.Resources>
+        <ResourceDictionary Source="/DarkStyle;component/ControlDarkStyle.xaml"/>
+    </UserControl.Resources>
+    <ListView ScrollViewer.HorizontalScrollBarVisibility="Hidden" x:Name="LVMain" Foreground="White" Background="#FF252526" MouseDoubleClick="LVMain_MouseDoubleClick" KeyDown="LVMain_KeyDown">
+        <ListView.View>
+            <GridView AllowsColumnReorder="False">
+                <GridViewColumn x:Name="GVCAddr" Width="101" DisplayMemberBinding="{Binding Address}">
+                    <GridViewColumn.Header>
+                        <TextBlock Text="地址">
+                            <TextBlock.Resources>
+                                <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                                    <sys:String>地址</sys:String>
+                                    <sys:String>Address</sys:String>
+                                </x:Array>
+                            </TextBlock.Resources>
+                        </TextBlock>
+                    </GridViewColumn.Header>
+                </GridViewColumn>
+                <GridViewColumn x:Name="GVCDesc" Width="151" DisplayMemberBinding="{Binding Description}">
+                    <GridViewColumn.Header>
+                        <TextBlock Text="描述">
+                            <TextBlock.Resources>
+                                <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                                    <sys:String>描述</sys:String>
+                                    <sys:String>Description</sys:String>
+                                </x:Array>
+                            </TextBlock.Resources>
+                        </TextBlock>
+                    </GridViewColumn.Header>
+                </GridViewColumn>
+                <GridViewColumn x:Name="GVCType" Width="91" DisplayMemberBinding="{Binding DataType}">
+                    <GridViewColumn.Header>
+                        <TextBlock Text="类型">
+                            <TextBlock.Resources>
+                                <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                                    <sys:String>类型</sys:String>
+                                    <sys:String>DataType</sys:String>
+                                </x:Array>
+                            </TextBlock.Resources>
+                        </TextBlock>
+                    </GridViewColumn.Header>
+                </GridViewColumn>
+                <GridViewColumn x:Name="GVCValue" Width="151" DisplayMemberBinding="{Binding DataValue}">
+                    <GridViewColumn.Header>
+                        <TextBlock Text="数值">
+                            <TextBlock.Resources>
+                                <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                                    <sys:String>数值</sys:String>
+                                    <sys:String>DataValue</sys:String>
+                                </x:Array>
+                            </TextBlock.Resources>
+                        </TextBlock>
+                    </GridViewColumn.Header>
+                </GridViewColumn>
+            </GridView>
+        </ListView.View>
+        <ListView.ContextMenu>
+            <ContextMenu>
+                <MenuItem Header="添加项目" Click="MenuItem_Click">
+                    <MenuItem.Resources>
+                        <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                            <sys:String>添加项目</sys:String>
+                            <sys:String>Add item</sys:String>
+                        </x:Array>
+                    </MenuItem.Resources>
+                </MenuItem>
+                <MenuItem Header="删除项目" InputGestureText="Delete" Click="MenuItem_Click_1">
+                    <MenuItem.Resources>
+                        <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                            <sys:String>删除项目</sys:String>
+                            <sys:String>Delete item</sys:String>
+                        </x:Array>
+                    </MenuItem.Resources>
+                </MenuItem>
+                <MenuItem Header="清空项目" Click="MenuItem_Click_2">
+                    <MenuItem.Resources>
+                        <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                            <sys:String>清空项目</sys:String>
+                            <sys:String>Clear all items</sys:String>
+                        </x:Array>
+                    </MenuItem.Resources>
+                </MenuItem>
+                <MenuItem Header="保存项目列表" InputGestureText="Ctrl+S" Click="MenuItem_Click_3">
+                    <MenuItem.Resources>
+                        <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                            <sys:String>保存项目列表</sys:String>
+                            <sys:String>Save all items</sys:String>
+                        </x:Array>
+                    </MenuItem.Resources>
+                </MenuItem>
+                <MenuItem Header="加载项目列表" Click="MenuItem_Click_4">
+                    <MenuItem.Resources>
+                        <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                            <sys:String>加载项目列表</sys:String>
+                            <sys:String>Load items</sys:String>
+                        </x:Array>
+                    </MenuItem.Resources>
+                </MenuItem>
+            </ContextMenu>
+        </ListView.ContextMenu>
+    </ListView>
+</UserControl>

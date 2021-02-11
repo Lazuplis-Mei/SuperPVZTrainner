@@ -1,0 +1,22 @@
+﻿<Window x:Class="DarkStyle.InputDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DarkStyle"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
+        mc:Ignorable="d"
+        Title="输入框" Height="180" Width="400" MouseDown="Window_MouseDown"
+        WindowStyle="None" ResizeMode="NoResize" Topmost="True"
+        Background="#FF252526" WindowStartupLocation="CenterScreen" ShowInTaskbar="False">
+    <Canvas>
+        <Rectangle Stroke="Crimson" StrokeThickness="2" Height="180" Width="400"/>
+        <local:CloseButton Canvas.Left="360" Canvas.Top="10"/>
+        <TextBlock x:Name="TBTitle" Foreground="White" Text="标题" FontWeight="Bold" FontSize="20" Canvas.Left="10" Canvas.Top="10"/>
+        <TextBlock Canvas.Left="10" Canvas.Top="35" Foreground="Crimson" Text="-------------------------------------------------------------------------"/>
+        <TextBlock x:Name="TBDesc" Foreground="White" Text="输入指定内容" FontWeight="Bold" FontSize="14" Canvas.Left="10" Canvas.Top="60"/>
+        <TextBox x:Name="TBContent" VerticalContentAlignment="Center" FontSize="14" Canvas.Left="10" Canvas.Top="95" Width="379" Foreground="White" Background="#FF252526" Height="30" KeyDown="TBContent_KeyDown"/>
+        <local:DarkButton x:Name="BtnOK" Content="确认" Width="100" Height="25"  Canvas.Left="80" Canvas.Top="145" Click="BtnOK_Click"/>
+        <local:DarkButton x:Name="BtnCancel" Content="取消" Width="100" Height="25"  Canvas.Left="220" Canvas.Top="145" Click="BtnCancel_Click"/>
+    </Canvas>
+</Window>

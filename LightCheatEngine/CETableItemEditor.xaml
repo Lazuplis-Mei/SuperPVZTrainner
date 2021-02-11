@@ -1,0 +1,159 @@
+﻿<Window x:Class="LightCheatEngine.CETableItemEditor"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:LightCheatEngine"
+        xmlns:Themes="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero"
+        xmlns:darkstyle="clr-namespace:DarkStyle;assembly=DarkStyle"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
+        mc:Ignorable="d"
+        Title="输入框" Height="195" Width="280" MouseDown="Window_MouseDown"
+        WindowStyle="None" ResizeMode="NoResize" Topmost="True"
+        Background="#FF252526" WindowStartupLocation="CenterScreen" ShowInTaskbar="False">
+    <Canvas>
+        <Rectangle x:Name="RectBorder" Stroke="Crimson" StrokeThickness="2" Height="195" Width="280"/>
+        <darkstyle:CloseButton Canvas.Right="10" Canvas.Top="10" />
+        <TextBlock x:Name="TBTitle" Foreground="White" Text="编辑项目" FontWeight="Bold" FontSize="20" Canvas.Left="10" Canvas.Top="10">
+            <TextBlock.Resources>
+                <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                    <sys:String>编辑项目</sys:String>
+                    <sys:String>Edit item</sys:String>
+                </x:Array>
+            </TextBlock.Resources>
+        </TextBlock>
+        <TextBlock Canvas.Left="10" Canvas.Top="35" Foreground="Crimson" Text="--------------------------------------------------"/>
+        <TextBlock Canvas.Top="56" Foreground="White" Text="地址" Width="70" TextAlignment="Center">
+            <TextBlock.Resources>
+                <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                    <sys:String>地址</sys:String>
+                    <sys:String>Address</sys:String>
+                </x:Array>
+            </TextBlock.Resources>
+        </TextBlock>
+        <TextBox x:Name="TBAddress" Foreground="White" Background="#FF252526" Width="89" Canvas.Left="70" Canvas.Top="55" Text="0" KeyDown="TBAddress_KeyDown"/>
+        <TextBlock Canvas.Left="164" Canvas.Top="56" Foreground="White" Text="="/>
+        <TextBlock x:Name="TBValue" Canvas.Left="178" Canvas.Top="56" Foreground="White" Text="0"/>
+        <TextBlock Canvas.Top="82" Foreground="White" Text="描述" Width="85" TextAlignment="Center">
+            <TextBlock.Resources>
+                <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                    <sys:String>描述</sys:String>
+                    <sys:String>Description</sys:String>
+                </x:Array>
+            </TextBlock.Resources>
+        </TextBlock>
+        <TextBox VerticalContentAlignment="Center" x:Name="TBDescription" Foreground="White" Background="#FF252526" Width="185" Canvas.Left="85" Canvas.Top="80" Text="&lt;Empty&gt;" Height="20"/>
+        <TextBlock Canvas.Top="112" Foreground="White" Text="类型" Width="85" TextAlignment="Center">
+            <TextBlock.Resources>
+                <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                    <sys:String>类型</sys:String>
+                    <sys:String>DataType</sys:String>
+                </x:Array>
+            </TextBlock.Resources>
+        </TextBlock>
+        <darkstyle:DarkComboBox Name="CBType" Canvas.Left="85" Canvas.Top="109" Foreground="White" Width="185" SelectedIndex="2">
+            <darkstyle:DarkComboBoxItem Content="字节">
+                <darkstyle:DarkComboBoxItem.Resources>
+                    <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                        <sys:String>字节</sys:String>
+                        <sys:String>Byte</sys:String>
+                    </x:Array>
+                </darkstyle:DarkComboBoxItem.Resources>
+            </darkstyle:DarkComboBoxItem>
+            <darkstyle:DarkComboBoxItem Content="短整数">
+                <darkstyle:DarkComboBoxItem.Resources>
+                    <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                        <sys:String>短整数</sys:String>
+                        <sys:String>2 Bytes</sys:String>
+                    </x:Array>
+                </darkstyle:DarkComboBoxItem.Resources>
+            </darkstyle:DarkComboBoxItem>
+            <darkstyle:DarkComboBoxItem Content="整数">
+                <darkstyle:DarkComboBoxItem.Resources>
+                    <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                        <sys:String>整数</sys:String>
+                        <sys:String>4 Bytes</sys:String>
+                    </x:Array>
+                </darkstyle:DarkComboBoxItem.Resources>
+            </darkstyle:DarkComboBoxItem>
+            <darkstyle:DarkComboBoxItem Content="长整数">
+                <darkstyle:DarkComboBoxItem.Resources>
+                    <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                        <sys:String>长整数</sys:String>
+                        <sys:String>8 Bytes</sys:String>
+                    </x:Array>
+                </darkstyle:DarkComboBoxItem.Resources>
+            </darkstyle:DarkComboBoxItem>
+            <darkstyle:DarkComboBoxItem Content="浮点数">
+                <darkstyle:DarkComboBoxItem.Resources>
+                    <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                        <sys:String>浮点数</sys:String>
+                        <sys:String>Float</sys:String>
+                    </x:Array>
+                </darkstyle:DarkComboBoxItem.Resources>
+            </darkstyle:DarkComboBoxItem>
+            <darkstyle:DarkComboBoxItem Content="双精度浮点数">
+                <darkstyle:DarkComboBoxItem.Resources>
+                    <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                        <sys:String>双精度浮点数</sys:String>
+                        <sys:String>Double</sys:String>
+                    </x:Array>
+                </darkstyle:DarkComboBoxItem.Resources>
+            </darkstyle:DarkComboBoxItem>
+            <darkstyle:DarkComboBoxItem Content="字符串">
+                <darkstyle:DarkComboBoxItem.Resources>
+                    <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                        <sys:String>字符串</sys:String>
+                        <sys:String>String</sys:String>
+                    </x:Array>
+                </darkstyle:DarkComboBoxItem.Resources>
+            </darkstyle:DarkComboBoxItem>
+        </darkstyle:DarkComboBox>
+        <darkstyle:DarkCheckBox x:Name="CBPointer" Content="指针" Canvas.Left="10" Canvas.Top="135" Click="CBPointer_Click">
+            <darkstyle:DarkCheckBox.Resources>
+                <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                    <sys:String>指针</sys:String>
+                    <sys:String>Pointer</sys:String>
+                </x:Array>
+            </darkstyle:DarkCheckBox.Resources>
+        </darkstyle:DarkCheckBox>
+        <Grid x:Name="GridOffset" Visibility="Collapsed" Height="50" Width="260" Canvas.Left="10" Canvas.Top="160">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="20"/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="20"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <TextBlock Text="+" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            <TextBox VerticalContentAlignment="Center" Grid.Column="1" Grid.ColumnSpan="2" Foreground="White" Background="#FF252526" Height="18"/>
+            <darkstyle:DarkButton Width="80" x:Name="BtnAddOffset"  Margin="15,2" Content="添加" Grid.Row="1" Grid.ColumnSpan="2" Click="BtnAddOffset_Click">
+                <darkstyle:DarkButton.Resources>
+                    <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                        <sys:String>添加</sys:String>
+                        <sys:String>Add</sys:String>
+                    </x:Array>
+                </darkstyle:DarkButton.Resources>
+            </darkstyle:DarkButton>
+            <darkstyle:DarkButton Width="80" x:Name="BtnRemoveOffset" Margin="15,2" Content="删除" Grid.Row="1" Grid.ColumnSpan="2" Grid.Column="2" Click="BtnRemoveOffset_Click">
+                <darkstyle:DarkButton.Resources>
+                    <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                        <sys:String>删除</sys:String>
+                        <sys:String>Remove</sys:String>
+                    </x:Array>
+                </darkstyle:DarkButton.Resources>
+            </darkstyle:DarkButton>
+        </Grid>
+        <darkstyle:DarkButton x:Name="BtnOK" Content="确认" Width="100" Height="25"  Canvas.Left="90" Canvas.Bottom="10" Click="BtnOK_Click">
+            <darkstyle:DarkButton.Resources>
+                <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                    <sys:String>确认</sys:String>
+                    <sys:String>Ok</sys:String>
+                </x:Array>
+            </darkstyle:DarkButton.Resources>
+        </darkstyle:DarkButton>
+    </Canvas>
+</Window>

@@ -1,0 +1,10 @@
+﻿<Application x:Class="Application"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="clr-namespace:PVZWPFTrainner"
+             xmlns:Themes="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero"
+             StartupUri="MainWindow.xaml" Startup="Application_Startup">
+    <Application.Resources>
+        <ResourceDictionary Source="/DarkStyle;component/ControlDarkStyle.xaml" />
+    </Application.Resources>
+</Application>

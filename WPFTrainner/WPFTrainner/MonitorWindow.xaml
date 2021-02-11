@@ -1,0 +1,1240 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PVZWPFTrainner"
+    xmlns:sys="clr-namespace:System;assembly=mscorlib"
+    xmlns:darkstyle="clr-namespace:DarkStyle;assembly=DarkStyle"
+    x:Class="MonitorWindow"
+        mc:Ignorable="d"
+        Title="监视窗口" Height="470" Width="400" MouseDown="Window_MouseDown" Closed="Window_Closed"
+        WindowStyle="None" ResizeMode="NoResize" Loaded="Window_Loaded" PreviewMouseWheel="Window_PreviewMouseWheel"
+        Background="#FF252526" WindowStartupLocation="CenterScreen">
+    <Canvas>
+        <Rectangle Stroke="Crimson" StrokeThickness="2" Height="470" Width="400"/>
+        <TextBlock Foreground="White" Text="监视窗口" FontWeight="Bold" FontSize="20"  Canvas.Left="10" Canvas.Top="10">
+            <TextBlock.Resources>
+                <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                    <sys:String>监视窗口</sys:String>
+                    <sys:String>Monitor</sys:String>
+                </x:Array>
+            </TextBlock.Resources>
+        </TextBlock>
+        <darkstyle:DarkCheckBox x:Name="CBHpTrack" Content="启动僵尸血量显示" ToolTipService.ShowDuration="20000"
+                       Canvas.Left="105" Canvas.Top="16" Click="CBHpTrack_Click">
+            <darkstyle:DarkCheckBox.Resources>
+                <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                    <sys:String>启动僵尸血量显示</sys:String>
+                    <sys:String>ShowZombieHp</sys:String>
+                </x:Array>
+            </darkstyle:DarkCheckBox.Resources>
+        </darkstyle:DarkCheckBox>
+        <TextBox x:Name="TBColor" Canvas.Left="230" Foreground="White" Canvas.Top="14" Width="80" Background="#FF252526"
+                       PreviewKeyDown="TBColor_PreviewKeyDown"  Text="White"/>
+        <darkstyle:CloseButton Canvas.Left="360" Canvas.Top="10"/>
+        <darkstyle:MinimizeButton Canvas.Left="320" Canvas.Top="10"/>
+        <TextBlock  Canvas.Left="10" Canvas.Top="35" Foreground="Crimson" Text="-------------------------------------------------------------------------"/>
+        <TabControl x:Name="TCMain" Width="380" Canvas.Left="10" Canvas.Top="60" Height="390" PreviewKeyDown="TCMain_PreviewKeyDown"
+                        Background="#FF252526" BorderThickness="1" SelectionChanged="TCMain_SelectionChanged">
+            <TabItem Foreground="White" Header="鼠标指针" TabIndex="0"  Background="#FF252526" Style="{DynamicResource TabItemStyle1}">
+                <TabItem.Resources>
+                    <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                        <sys:String>鼠标指针</sys:String>
+                        <sys:String>Mouse</sys:String>
+                    </x:Array>
+                </TabItem.Resources>
+                <Canvas Background="#FF252525">
+                    <TextBlock Text="是否在游戏内"  Canvas.Left="23" Canvas.Top="82" >
+                        <TextBlock.Resources>
+                            <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                                <sys:String>是否在游戏内</sys:String>
+                                <sys:String>InGameArea</sys:String>
+                            </x:Array>
+                        </TextBlock.Resources>
+                    </TextBlock>
+                    <TextBlock x:Name="TBMouseInGameArea" Text="否"  Canvas.Left="153" Canvas.Top="82"/>
+                    <TextBlock Text="横坐标"  Canvas.Left="23" Canvas.Top="122">
+                        <TextBlock.Resources>
+                            <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                                <sys:String>横坐标</sys:String>
+                                <sys:String>X</sys:String>
+                            </x:Array>
+                        </TextBlock.Resources>
+                    </TextBlock>
+                    <TextBlock x:Name="TBMouseX" Text="0"  Canvas.Left="153" Canvas.Top="122"/>
+                    <TextBlock Text="纵坐标"  Canvas.Left="23" Canvas.Top="162">
+                        <TextBlock.Resources>
+                            <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                                <sys:String>纵坐标</sys:String>
+                                <sys:String>Y</sys:String>
+                            </x:Array>
+                        </TextBlock.Resources>
+                    </TextBlock>
+                    <TextBlock x:Name="TBMouseY" Text="0"  Canvas.Left="153" Canvas.Top="162"/>
+                    <TextBlock Text="点击状态"  Canvas.Left="23" Canvas.Top="202">
+                        <TextBlock.Resources>
+                            <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                                <sys:String>点击状态</sys:String>
+                                <sys:String>ClickState</sys:String>
+                            </x:Array>
+                        </TextBlock.Resources>
+                    </TextBlock>
+                    <TextBlock x:Name="TBMouseStateLeft" Text="左键"  Canvas.Left="153" Canvas.Top="202">
+                        <TextBlock.Resources>
+                            <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                                <sys:String>左键</sys:String>
+                                <sys:String>Left</sys:String>
+                            </x:Array>
+                        </TextBlock.Resources>
+                    </TextBlock>
+                    <TextBlock x:Name="TBMouseStateMid" Text="中键"  Canvas.Left="193" Canvas.Top="202">
+                        <TextBlock.Resources>
+                            <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                                <sys:String>中键</sys:String>
+                                <sys:String>Mid</sys:String>
+                            </x:Array>
+                        </TextBlock.Resources>
+                    </TextBlock>
+                    <TextBlock x:Name="TBMouseStateRight" Text="右键"  Canvas.Left="233" Canvas.Top="202">
+                        <TextBlock.Resources>
+                            <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                                <sys:String>右键</sys:String>
+                                <sys:String>Right</sys:String>
+                            </x:Array>
+                        </TextBlock.Resources>
+                    </TextBlock>
+                    <TextBlock Text="X坐标" TextAlignment="Center" Canvas.Left="23" Canvas.Top="244" Width="40">
+                        <TextBlock.Resources>
+                            <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                                <sys:String>X坐标</sys:String>
+                                <sys:String>X</sys:String>
+                            </x:Array>
+                        </TextBlock.Resources>
+                    </TextBlock>
+                    <darkstyle:DarkTextBox x:Name="TBoxMouseX" BorderThickness="1"
+                                         Canvas.Left="63" Canvas.Top="243" PreviewKeyDown="TBoxMouseX_PreviewKeyDown"/>
+                    <TextBlock Text="Y坐标"  Canvas.Left="153" Canvas.Top="244" Width="40" TextAlignment="Center">
+                        <TextBlock.Resources>
+                            <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                                <sys:String>Y坐标</sys:String>
+                                <sys:String>Y</sys:String>
+                            </x:Array>
+                        </TextBlock.Resources>
+                    </TextBlock>
+                    <darkstyle:DarkTextBox x:Name="TBoxMouseY" BorderThickness="1"
+                                         Canvas.Left="193" Canvas.Top="243" PreviewKeyDown="TBoxMouseX_PreviewKeyDown"/>
+                    <darkstyle:DarkButton x:Name="BtnWMClick" Content="点击坐标" Width="70"
+                                Canvas.Left="287" Canvas.Top="242" Click="BtnWMClick_Click">
+                        <darkstyle:DarkButton.Resources>
+                            <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                                <sys:String>点击坐标</sys:String>
+                                <sys:String>DoClick</sys:String>
+                            </x:Array>
+                        </darkstyle:DarkButton.Resources>
+                    </darkstyle:DarkButton>
+                    <TextBlock Text="所在行"  Canvas.Left="194" Canvas.Top="122">
+                        <TextBlock.Resources>
+                            <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                                <sys:String>所在行</sys:String>
+                                <sys:String>Row</sys:String>
+                            </x:Array>
+                        </TextBlock.Resources>
+                    </TextBlock>
+                    <TextBlock x:Name="TBMouseRow" Text="0"  Canvas.Left="323" Canvas.Top="122"/>
+                    <TextBlock Text="所在列"  Canvas.Left="194" Canvas.Top="162">
+                        <TextBlock.Resources>
+                            <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                                <sys:String>所在列</sys:String>
+                                <sys:String>Column</sys:String>
+                            </x:Array>
+                        </TextBlock.Resources>
+                    </TextBlock>
+                    <TextBlock x:Name="TBMouseColumn" Text="0"  Canvas.Left="323" Canvas.Top="162"/>
+                </Canvas>
+            </TabItem>
+            <TabItem Foreground="White" Header="僵尸" TabIndex="1"  Background="#FF252526" Style="{DynamicResource TabItemStyle1}">
+                <TabItem.Resources>
+                    <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                        <sys:String>僵尸</sys:String>
+                        <sys:String>Zombies</sys:String>
+                    </x:Array>
+                </TabItem.Resources>
+                <Canvas Background="#FF252525">
+                    <ListBox x:Name="LBZombies" Width="100" Height="326" Canvas.Left="10" Canvas.Top="10" SelectionChanged="LBZombies_SelectionChanged"
+                                 Background="#FF252526" ScrollViewer.CanContentScroll="True" Style="{DynamicResource ListBoxStyle1}"/>
+                    <TextBlock x:Name="TBZombieType" Text="类型"  Canvas.Left="120" Canvas.Top="10">
+                        <TextBlock.Resources>
+                            <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                                <sys:String>类型</sys:String>
+                                <sys:String>Type</sys:String>
+                            </x:Array>
+                        </TextBlock.Resources>
+                    </TextBlock>
+                    <TextBlock x:Name="TBZombieId" Text="id="  Canvas.Left="245" Canvas.Top="10" MouseDown="TBZombieId_MouseDown">
+                        <TextBlock.ToolTip>
+                            <local:MyToolTip Content="点击复制">
+                                <ToolTip.Resources>
+                                    <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                                        <sys:String>点击复制</sys:String>
+                                        <sys:String>Click to copy</sys:String>
+                                    </x:Array>
+                                </ToolTip.Resources>
+                            </local:MyToolTip>
+                        </TextBlock.ToolTip>
+                    </TextBlock>
+                    <TextBlock Text="X坐标"  Canvas.Left="120" Canvas.Top="35" Width="40" TextAlignment="Center">
+                        <TextBlock.Resources>
+                            <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                                <sys:String>X坐标</sys:String>
+                                <sys:String>X</sys:String>
+                            </x:Array>
+                        </TextBlock.Resources>
+                    </TextBlock>
+                    <darkstyle:DarkTextBox x:Name="TBZombieX" Text="0" Canvas.Left="160" Canvas.Top="34" Width="75"
+                                 PreviewKeyDown="TBZombieX_PreviewKeyDown" BorderThickness="1"/>
+                    <TextBlock Text="Y坐标"  Canvas.Left="240" Canvas.Top="35" Width="48" TextAlignment="Center">
+                        <TextBlock.Resources>
+                            <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                                <sys:String>Y坐标</sys:String>
+                                <sys:String>Y</sys:String>
+                            </x:Array>
+                        </TextBlock.Resources>
+                    </TextBlock>
+                    <darkstyle:DarkTextBox x:Name="TBZombieY" Text="0" Canvas.Left="289" Canvas.Top="34" Width="75"
+                                 PreviewKeyDown="TBZombieY_PreviewKeyDown" BorderThickness="1"/>
+                    <TextBlock Text="所在行" Canvas.Left="120" Canvas.Top="66" Width="40" TextAlignment="Center">
+                        <TextBlock.Resources>
+                            <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                                <sys:String>所在行</sys:String>
+                                <sys:String>Row</sys:String>
+                            </x:Array>
+                        </TextBlock.Resources>
+                    </TextBlock>
+                    <darkstyle:Numericupdown x:Name="NudZombieRow" Value="1" Canvas.Left="160" MaxValue="6" MinValue="1" Canvas.Top="60" Width="80" ValueChanged="NudZombieRow_ValueChanged"/>
+                    <TextBlock Text="状态"  Canvas.Left="240" Canvas.Top="66" Width="48" TextAlignment="Center">
+                        <TextBlock.Resources>
+                            <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                                <sys:String>状态</sys:String>
+                                <sys:String>State</sys:String>
+                            </x:Array>
+                        </TextBlock.Resources>
+                    </TextBlock>
+                    <darkstyle:DarkTextBox x:Name="TBZombieState" Text="0" Canvas.Left="289" Canvas.Top="66" Width="75"
+                                 PreviewKeyDown="TBZombieState_PreviewKeyDown" BorderThickness="1"/>
+                    <GroupBox BorderThickness="0.5" Header="血量" Canvas.Left="120" Canvas.Top="92" Height="101" Width="130">
+                        <GroupBox.Resources>
+                            <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                                <sys:String>血量</sys:String>
+                                <sys:String>Hp</sys:String>
+                            </x:Array>
+                        </GroupBox.Resources>
+                        <Canvas>
+                            <TextBlock Text="本体" Width="38" TextAlignment="Center" Canvas.Top="10">
+                                <TextBlock.Resources>
+                                    <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                                        <sys:String>本体</sys:String>
+                                        <sys:String>Body</sys:String>
+                                    </x:Array>
+                                </TextBlock.Resources>
+                            </TextBlock>
+                            <darkstyle:DarkTextBox x:Name="TBZombieBodyHp" Text="0" Canvas.Left="38" Canvas.Top="8" Width="75"
+                                    PreviewKeyDown="TBZombieBodyHp_PreviewKeyDown" BorderThickness="1"/>
+                            <TextBlock Text="饰品1" Width="38" TextAlignment="Center" Canvas.Top="35">
+                                <TextBlock.Resources>
+                                    <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                                        <sys:String>饰品1</sys:String>
+                                        <sys:String>Hat</sys:String>
+                                    </x:Array>
+                                </TextBlock.Resources>
+                            </TextBlock>
+                            <darkstyle:DarkTextBox x:Name="TBZombieA1Hp" Text="0" Canvas.Left="38" Canvas.Top="34" Width="74" 
+                                    PreviewKeyDown="TBZombieA1Hp_PreviewKeyDown" BorderThickness="1"/>
+                            <TextBlock Text="饰品2" Width="38" TextAlignment="Center" Canvas.Top="60">
+                                <TextBlock.Resources>
+                                    <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                                        <sys:String>饰品2</sys:String>
+                                        <sys:String>Shield</sys:String>
+                                    </x:Array>
+                                </TextBlock.Resources>
+                            </TextBlock>
+                            <darkstyle:DarkTextBox x:Name="TBZombieA2Hp" Text="0" Canvas.Left="38" Canvas.Top="59" Width="74"
+                                    PreviewKeyDown="TBZombieA2Hp_PreviewKeyDown" BorderThickness="1"/>
+                        </Canvas>
+                    </GroupBox>
+                    <GroupBox BorderThickness="0.5" Header="属性" Canvas.Left="262" Canvas.Top="92" Height="158" Width="100">
+                        <GroupBox.Resources>
+                            <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                                <sys:String>属性</sys:String>
+                                <sys:String>Property</sys:String>
+                            </x:Array>
+                        </GroupBox.Resources>
+                        <Canvas>
+                            <darkstyle:DarkCheckBox x:Name="CBZombieVisible" Content="隐形"  Canvas.Left="2" Canvas.Top="5" Click="CBZombieVisible_Click">
+                                <darkstyle:DarkCheckBox.Resources>
+                                    <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                                        <sys:String>隐形</sys:String>
+                                        <sys:String>InVisible</sys:String>
+                                    </x:Array>
+                                </darkstyle:DarkCheckBox.Resources>
+                            </darkstyle:DarkCheckBox>
+                            <darkstyle:DarkCheckBox x:Name="CBZombieHypnotized" Content="魅惑"  Canvas.Left="2" Canvas.Top="27" Click="CBZombieHypnotized_Click">
+                                <darkstyle:DarkCheckBox.Resources>
+                                    <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                                        <sys:String>魅惑</sys:String>
+                                        <sys:String>Hypnotized</sys:String>
+                                    </x:Array>
+                                </darkstyle:DarkCheckBox.Resources>
+                            </darkstyle:DarkCheckBox>
+                            <darkstyle:DarkCheckBox x:Name="CBZombieBlowaway" Content="吹飞"  Canvas.Left="2" Canvas.Top="49" Click="CBZombieBlowaway_Click">
+                                <darkstyle:DarkCheckBox.Resources>
+                                    <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                                        <sys:String>吹飞</sys:String>
+                                        <sys:String>Blowaway</sys:String>
+                                    </x:Array>
+                                </darkstyle:DarkCheckBox.Resources>
+                            </darkstyle:DarkCheckBox>
+                            <darkstyle:DarkCheckBox x:Name="CBZombieDying" Content="低于临界"  Canvas.Left="2" Canvas.Top="71" Click="CBZombieDying_Click">
+                                <darkstyle:DarkCheckBox.Resources>
+                                    <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                                        <sys:String>低于临界</sys:String>
+                                        <sys:String>Dying</sys:String>
+                                    </x:Array>
+                                </darkstyle:DarkCheckBox.Resources>
+                            </darkstyle:DarkCheckBox>
+                            <darkstyle:DarkCheckBox  x:Name="CBZombieGarlicBited" Content="咬到大蒜"  Canvas.Left="2" Canvas.Top="93"  Click="CBZombieGarlicBited_Click">
+                                <darkstyle:DarkCheckBox.Resources>
+                                    <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                                        <sys:String>咬到大蒜</sys:String>
+                                        <sys:String>Garlic</sys:String>
+                                    </x:Array>
+                                </darkstyle:DarkCheckBox.Resources>
+                            </darkstyle:DarkCheckBox>
+                            <darkstyle:DarkCheckBox x:Name="CBZombieExist" Content="存在"  Canvas.Left="2" Canvas.Top="115" Click="CBZombieExist_Click">
+                                <darkstyle:DarkCheckBox.Resources>
+                                    <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                                        <sys:String>存在</sys:String>
+                                        <sys:String>Exist</sys:String>
+                                    </x:Array>
+                                </darkstyle:DarkCheckBox.Resources>
+                            </darkstyle:DarkCheckBox>
+                        </Canvas>
+                    </GroupBox>
+                    <GroupBox BorderThickness="0.5" Header="倒计时" Canvas.Left="120" Canvas.Top="198" Height="100" Width="130" >
+                        <GroupBox.Resources>
+                            <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                                <sys:String>倒计时</sys:String>
+                                <sys:String>Countdown</sys:String>
+                            </x:Array>
+                        </GroupBox.Resources>
+                        <Canvas>
+                            <TextBlock Text="减速" Width="36" TextAlignment="Center" Canvas.Top="7">
+                                <TextBlock.Resources>
+                                    <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                                        <sys:String>减速</sys:String>
+                                        <sys:String>Cold</sys:String>
+                                    </x:Array>
+                                </TextBlock.Resources>
+                            </TextBlock>
+                            <local:MySlider x:Name="SZombieDecelerate" Canvas.Left="38" Canvas.Top="6" ValueChanged="SZombieDecelerate_ValueChanged"/>
+                            <TextBlock Text="黄油" Width="36" TextAlignment="Center" Canvas.Top="32">
+                                <TextBlock.Resources>
+                                    <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                                        <sys:String>黄油</sys:String>
+                                        <sys:String>Butter</sys:String>
+                                    </x:Array>
+                                </TextBlock.Resources>
+                            </TextBlock>
+                            <local:MySlider x:Name="SZombieFixed" Canvas.Left="38" Canvas.Top="31" ValueChanged="SZombieFixed_ValueChanged"/>
+                            <TextBlock Text="冻结" Width="36" TextAlignment="Center" Canvas.Top="57">
+                                <TextBlock.Resources>
+                                    <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                                        <sys:String>冻结</sys:String>
+                                        <sys:String>Froze</sys:String>
+                                    </x:Array>
+                                </TextBlock.Resources>
+                            </TextBlock>
+                            <local:MySlider x:Name="SZombieFrozen" Canvas.Left="38" Canvas.Top="56" ValueChanged="SZombieFrozen_ValueChanged"/>
+                        </Canvas>
+                    </GroupBox>
+                    <darkstyle:DarkButton x:Name="BtnZombieButter" Content="黄油固定" Width="60" Canvas.Left="120" Canvas.Top="313" Click="BtnZombieButter_Click">
+                        <darkstyle:DarkButton.Resources>
+                            <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                                <sys:String>黄油固定</sys:String>
+                                <sys:String>Butter</sys:String>
+                            </x:Array>
+                        </darkstyle:DarkButton.Resources>
+                    </darkstyle:DarkButton>
+                    <darkstyle:DarkButton x:Name="BtnZombieBlast" Content="爆炸伤害" Width="60" Canvas.Left="190" Canvas.Top="313" Click="BtnZombieBlast_Click">
+                        <darkstyle:DarkButton.Resources>
+                            <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                                <sys:String>爆炸伤害</sys:String>
+                                <sys:String>Blast</sys:String>
+                            </x:Array>
+                        </darkstyle:DarkButton.Resources>
+                    </darkstyle:DarkButton>
+                    <darkstyle:DarkTextBox x:Name="TBZombieDamage" Text="0" Canvas.Left="275" Canvas.Top="255" Width="75" BorderThickness="1"/>
+                    <darkstyle:DarkComboBox x:Name="CBZombieDamageType"
+                            Canvas.Left="275" Canvas.Top="283" Width="80" >
+                        <darkstyle:DarkComboBoxItem Content="正面伤害">
+                            <darkstyle:DarkComboBoxItem.Resources>
+                                <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                                    <sys:String>正面伤害</sys:String>
+                                    <sys:String>Direct</sys:String>
+                                </x:Array>
+                            </darkstyle:DarkComboBoxItem.Resources>
+                        </darkstyle:DarkComboBoxItem>
+                        <darkstyle:DarkComboBoxItem Content="非正面伤害">
+                            <darkstyle:DarkComboBoxItem.Resources>
+                                <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                                    <sys:String>非正面伤害</sys:String>
+                                    <sys:String>NotDirect</sys:String>
+                                </x:Array>
+                            </darkstyle:DarkComboBoxItem.Resources>
+                        </darkstyle:DarkComboBoxItem>
+                        <darkstyle:DarkComboBoxItem Content="溅射伤害">
+                            <darkstyle:DarkComboBoxItem.Resources>
+                                <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                                    <sys:String>溅射伤害</sys:String>
+                                    <sys:String>Sputter</sys:String>
+                                </x:Array>
+                            </darkstyle:DarkComboBoxItem.Resources>
+                        </darkstyle:DarkComboBoxItem>
+                        <darkstyle:DarkComboBoxItem Content="正面减速">
+                            <darkstyle:DarkComboBoxItem.Resources>
+                                <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                                    <sys:String>正面减速</sys:String>
+                                    <sys:String>DirectIce</sys:String>
+                                </x:Array>
+                            </darkstyle:DarkComboBoxItem.Resources>
+                        </darkstyle:DarkComboBoxItem>
+                        <darkstyle:DarkComboBoxItem Content="非正面减速">
+                            <darkstyle:DarkComboBoxItem.Resources>
+                                <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                                    <sys:String>非正面减速</sys:String>
+                                    <sys:String>NotDirectIce</sys:String>
+                                </x:Array>
+                            </darkstyle:DarkComboBoxItem.Resources>
+                        </darkstyle:DarkComboBoxItem>
+                        <darkstyle:DarkComboBoxItem Content="溅射减速">
+                            <darkstyle:DarkComboBoxItem.Resources>
+                                <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                                    <sys:String>溅射减速</sys:String>
+                                    <sys:String>SputterIce</sys:String>
+                                </x:Array>
+                            </darkstyle:DarkComboBoxItem.Resources>
+                        </darkstyle:DarkComboBoxItem>
+                    </darkstyle:DarkComboBox>
+                    <darkstyle:DarkButton x:Name="BtnZombieHit" Content="伤害" Width="80"
+                            Canvas.Left="275" Canvas.Top="313" Click="BtnZombieHit_Click">
+                        <Button.Resources>
+                            <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                                <sys:String>伤害</sys:String>
+                                <sys:String>Damage</sys:String>
+                            </x:Array>
+                        </Button.Resources>
+                    </darkstyle:DarkButton>
+                </Canvas>
+            </TabItem>
+            <TabItem Foreground="White" Header="植物" TabIndex="2"  Background="#FF252526" Style="{DynamicResource TabItemStyle1}">
+                <TabItem.Resources>
+                    <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                        <sys:String>植物</sys:String>
+                        <sys:String>Plants</sys:String>
+                    </x:Array>
+                </TabItem.Resources>
+                <Canvas Background="#FF252525">
+                    <ListBox x:Name="LBPlants" Width="100" Height="326" Canvas.Left="10" Canvas.Top="10" SelectionChanged="LBPlants_SelectionChanged"
+                                 Background="#FF252526" ScrollViewer.CanContentScroll="True" Style="{DynamicResource ListBoxStyle1}"/>
+                    <TextBlock x:Name="TBPlantType" Text="类型"  Canvas.Left="120" Canvas.Top="10">
+                        <TextBlock.Resources>
+                            <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                                <sys:String>类型</sys:String>
+                                <sys:String>Type</sys:String>
+                            </x:Array>
+                        </TextBlock.Resources>
+                    </TextBlock>
+                    <TextBlock x:Name="TBPlantId" Text="id="  Canvas.Left="245" Canvas.Top="10"/>
+                    <TextBlock Text="X坐标" Width="40" TextAlignment="Center" Canvas.Left="120" Canvas.Top="35">
+                        <TextBlock.Resources>
+                            <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                                <sys:String>X坐标</sys:String>
+                                <sys:String>X</sys:String>
+                            </x:Array>
+                        </TextBlock.Resources>
+                    </TextBlock>
+                    <darkstyle:DarkTextBox x:Name="TBPlantX" Text="0" Canvas.Left="160" Canvas.Top="34" Width="75"
+                                 PreviewKeyDown="TBPlantX_PreviewKeyDown" BorderThickness="1"/>
+                    <TextBlock Text="Y坐标" Width="49" TextAlignment="Center" Canvas.Left="240" Canvas.Top="35">
+                        <TextBlock.Resources>
+                            <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                                <sys:String>Y坐标</sys:String>
+                                <sys:String>Y</sys:String>
+                            </x:Array>
+                        </TextBlock.Resources>
+                    </TextBlock>
+                    <darkstyle:DarkTextBox x:Name="TBPlantY" Text="0" Canvas.Left="289" Canvas.Top="34" Width="75"
+                                 PreviewKeyDown="TBPlantY_PreviewKeyDown" BorderThickness="1"/>
+                    <TextBlock Text="所在行" Width="40" TextAlignment="Center" Canvas.Left="120" Canvas.Top="61">
+                        <TextBlock.Resources>
+                            <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                                <sys:String>所在行</sys:String>
+                                <sys:String>Row</sys:String>
+                            </x:Array>
+                        </TextBlock.Resources>
+                    </TextBlock>
+                    <darkstyle:DarkTextBox x:Name="TBPlantRow" Text="0" Canvas.Left="160" Canvas.Top="60" Width="75"
+                                 PreviewKeyDown="TBPlantRow_PreviewKeyDown" BorderThickness="1"/>
+                    <TextBlock Text="所在列" Width="49" TextAlignment="Center" Canvas.Left="240" Canvas.Top="60">
+                        <TextBlock.Resources>
+                            <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                                <sys:String>所在列</sys:String>
+                                <sys:String>Column</sys:String>
+                            </x:Array>
+                        </TextBlock.Resources>
+                    </TextBlock>
+                    <darkstyle:DarkTextBox x:Name="TBPlantColumn" Text="0" Canvas.Left="289" Canvas.Top="60" Width="75"
+                                 PreviewKeyDown="TBPlantColumn_PreviewKeyDown" BorderThickness="1"/>
+                    <TextBlock Text="状态"  Canvas.Left="120" Canvas.Top="87" Width="40" TextAlignment="Center">
+                        <TextBlock.Resources>
+                            <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                                <sys:String>状态</sys:String>
+                                <sys:String>State</sys:String>
+                            </x:Array>
+                        </TextBlock.Resources>
+                    </TextBlock>
+                    <darkstyle:DarkTextBox x:Name="TBPlantState" Text="0" Canvas.Left="160" Canvas.Top="86" Width="75"
+                            PreviewKeyDown="TBPlantState_PreviewKeyDown" BorderThickness="1"/>
+                    <TextBlock Text="血量"  Canvas.Left="240" Canvas.Top="87" Width="49" TextAlignment="Center">
+                        <TextBlock.Resources>
+                            <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                                <sys:String>血量</sys:String>
+                                <sys:String>Hp</sys:String>
+                            </x:Array>
+                        </TextBlock.Resources>
+                    </TextBlock>
+                    <darkstyle:DarkTextBox x:Name="TBPlantHp" Text="0" Canvas.Left="289" Canvas.Top="86" Width="75"
+                            PreviewKeyDown="TBPlantHp_PreviewKeyDown" BorderThickness="1"/>
+                    <GroupBox BorderThickness="0.5" Header="属性" Canvas.Left="120" Canvas.Top="108" Height="134" Width="100">
+                        <GroupBox.Resources>
+                            <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                                <sys:String>属性</sys:String>
+                                <sys:String>Property</sys:String>
+                            </x:Array>
+                        </GroupBox.Resources>
+                        <Canvas>
+                            <darkstyle:DarkCheckBox x:Name="CBPlantVisible" Content="隐形"  Canvas.Left="5" Canvas.Top="5" Click="CBPlantVisible_Click">
+                                <darkstyle:DarkCheckBox.Resources>
+                                    <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                                        <sys:String>隐形</sys:String>
+                                        <sys:String>InVisible</sys:String>
+                                    </x:Array>
+                                </darkstyle:DarkCheckBox.Resources>
+                            </darkstyle:DarkCheckBox>
+                            <darkstyle:DarkCheckBox x:Name="CBPlantAggressive" Content="有攻击性"  Canvas.Left="5" Canvas.Top="27" Click="CBPlantAggressive_Click">
+                                <darkstyle:DarkCheckBox.Resources>
+                                    <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                                        <sys:String>有攻击性</sys:String>
+                                        <sys:String>Aggressive</sys:String>
+                                    </x:Array>
+                                </darkstyle:DarkCheckBox.Resources>
+                            </darkstyle:DarkCheckBox>
+                            <darkstyle:DarkCheckBox x:Name="CBPlantSquash" Content="压扁"  Canvas.Left="5" Canvas.Top="49" Click="CBPlantSquash_Click">
+                                <darkstyle:DarkCheckBox.Resources>
+                                    <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                                        <sys:String>压扁</sys:String>
+                                        <sys:String>Squash</sys:String>
+                                    </x:Array>
+                                </darkstyle:DarkCheckBox.Resources>
+                            </darkstyle:DarkCheckBox>
+                            <darkstyle:DarkCheckBox x:Name="CBPlantSleeping" Content="睡着"  Canvas.Left="5" Canvas.Top="71" Click="CBPlantSleeping_Click">
+                                <darkstyle:DarkCheckBox.Resources>
+                                    <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                                        <sys:String>睡着</sys:String>
+                                        <sys:String>Sleep</sys:String>
+                                    </x:Array>
+                                </darkstyle:DarkCheckBox.Resources>
+                            </darkstyle:DarkCheckBox>
+                            <darkstyle:DarkCheckBox x:Name="CBPlantExist" Content="存在"  Canvas.Left="5" Canvas.Top="93"  Click="CBPlantExist_Click">
+                                <darkstyle:DarkCheckBox.Resources>
+                                    <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                                        <sys:String>存在</sys:String>
+                                        <sys:String>Exist</sys:String>
+                                    </x:Array>
+                                </darkstyle:DarkCheckBox.Resources>
+                            </darkstyle:DarkCheckBox>
+                        </Canvas>
+                    </GroupBox>
+                    <GroupBox BorderThickness="0.5" Header="倒计时" Canvas.Left="234" Canvas.Top="108.24" Height="100" Width="130" >
+                        <GroupBox.Resources>
+                            <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                                <sys:String>倒计时</sys:String>
+                                <sys:String>Countdown</sys:String>
+                            </x:Array>
+                        </GroupBox.Resources>
+                        <Canvas>
+                            <TextBlock Text="生产" Canvas.Top="4" Width="36" TextAlignment="Center">
+                                <TextBlock.Resources>
+                                    <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                                        <sys:String>生产</sys:String>
+                                        <sys:String>Prods</sys:String>
+                                    </x:Array>
+                                </TextBlock.Resources>
+                            </TextBlock>
+                            <local:MySlider x:Name="SPlantProduct" Canvas.Left="38" Canvas.Top="3" ValueChanged="SPlantProduct_ValueChanged"/>
+                            <TextBlock Text="属性"  Canvas.Top="29" Width="36" TextAlignment="Center">
+                                <TextBlock.Resources>
+                                    <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                                        <sys:String>属性</sys:String>
+                                        <sys:String>Prop</sys:String>
+                                    </x:Array>
+                                </TextBlock.Resources>
+                            </TextBlock>
+                            <local:MySlider x:Name="SPlantAttribute" Canvas.Left="38" Canvas.Top="28" ValueChanged="SPlantAttribute_ValueChanged"/>
+                            <TextBlock Text="射击"  Canvas.Top="54" Width="36" TextAlignment="Center">
+                                <TextBlock.Resources>
+                                    <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                                        <sys:String>射击</sys:String>
+                                        <sys:String>Shoot</sys:String>
+                                    </x:Array>
+                                </TextBlock.Resources>
+                            </TextBlock>
+                            <local:MySlider x:Name="SPlantShooting" Canvas.Left="38" Canvas.Top="53" ValueChanged="SPlantShooting_ValueChanged"/>
+                        </Canvas>
+                    </GroupBox>
+                    <TextBlock Text="生产间隔"  Canvas.Left="236" Canvas.Top="220">
+                        <TextBlock.Resources>
+                            <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                                <sys:String>生产间隔</sys:String>
+                                <sys:String>Interval</sys:String>
+                            </x:Array>
+                        </TextBlock.Resources>
+                    </TextBlock>
+                    <darkstyle:DarkTextBox x:Name="TBPlantProductInterval" Text="0" Canvas.Left="289" Canvas.Top="220" Width="75"
+                            PreviewKeyDown="TBPlantProductInterval_PreviewKeyDown" BorderThickness="1"/>
+                    <darkstyle:DarkButton x:Name="BtnPlantEffect" Content="产生效果" Width="60"
+                            Canvas.Left="304" Canvas.Top="310" Click="BtnPlantEffect_Click">
+                        <Button.Resources>
+                            <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                                <sys:String>产生效果</sys:String>
+                                <sys:String>Effect</sys:String>
+                            </x:Array>
+                        </Button.Resources>
+                    </darkstyle:DarkButton>
+                    <darkstyle:DarkButton x:Name="BtnPlantFix" Content="固定" Width="70"
+                            Canvas.Left="120" Canvas.Top="310" Click="BtnPlantFix_Click">
+                        <Button.Resources>
+                            <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                                <sys:String>固定</sys:String>
+                                <sys:String>Butter</sys:String>
+                            </x:Array>
+                        </Button.Resources>
+                    </darkstyle:DarkButton>
+                    <darkstyle:DarkButton x:Name="BtnPlantFlash" Content="闪烁" Width="80"
+                            Canvas.Left="208" Canvas.Top="310" Click="BtnPlantFlash_Click">
+                        <Button.Resources>
+                            <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                                <sys:String>闪烁</sys:String>
+                                <sys:String>Flash</sys:String>
+                            </x:Array>
+                        </Button.Resources>
+                    </darkstyle:DarkButton>
+                    <TextBlock Text="发光时间"  Canvas.Left="120" Canvas.Top="249" Width="88" TextAlignment="Center">
+                        <TextBlock.Resources>
+                            <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                                <sys:String>发光时间</sys:String>
+                                <sys:String>Duration</sys:String>
+                            </x:Array>
+                        </TextBlock.Resources>
+                    </TextBlock>
+                    <darkstyle:DarkTextBox x:Name="TBPlantLight" Text="100" Canvas.Left="208" Canvas.Top="249" Width="75" BorderThickness="1"/>
+                    <darkstyle:DarkButton x:Name="BtnPlantLight" Content="发光"  Width="60"
+                           Canvas.Left="304" Canvas.Top="248" Click="BtnPlantLight_Click">
+                        <Button.Resources>
+                            <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                                <sys:String>发光</sys:String>
+                                <sys:String>Light</sys:String>
+                            </x:Array>
+                        </Button.Resources>
+                    </darkstyle:DarkButton>
+                    <TextBlock Text="僵尸Id"  Canvas.Left="120" Canvas.Top="280" Width="88" TextAlignment="Center">
+                        <TextBlock.Resources>
+                            <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                                <sys:String>僵尸Id</sys:String>
+                                <sys:String>ZombieId</sys:String>
+                            </x:Array>
+                        </TextBlock.Resources>
+                    </TextBlock>
+                    <darkstyle:DarkTextBox x:Name="TBPlantShoot" Text="-1" Canvas.Left="208" Canvas.Top="278" Width="75" BorderThickness="1"/>
+                    <darkstyle:DarkButton x:Name="BtnPlantShoot" Content="发射子弹"  Width="60"
+                           Canvas.Left="304" Canvas.Top="278" Click="BtnPlantShoot_Click">
+                        <Button.Resources>
+                            <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                                <sys:String>发射子弹</sys:String>
+                                <sys:String>Shoot</sys:String>
+                            </x:Array>
+                        </Button.Resources>
+                    </darkstyle:DarkButton>
+                </Canvas>
+            </TabItem>
+            <TabItem Foreground="White" Header="掉落物品"  TabIndex="3"  Background="#FF252526" Style="{DynamicResource TabItemStyle1}">
+                <TabItem.Resources>
+                    <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                        <sys:String>掉落物品</sys:String>
+                        <sys:String>Coins</sys:String>
+                    </x:Array>
+                </TabItem.Resources>
+                <Canvas Background="#FF252525">
+                    <ListBox x:Name="LBCoins" Width="100" Height="326" Canvas.Left="10" Canvas.Top="10" SelectionChanged="LBCoins_SelectionChanged"
+                                 Background="#FF252526" ScrollViewer.CanContentScroll="True" Style="{DynamicResource ListBoxStyle1}"/>
+                    <TextBlock x:Name="TBCoinType" Text="类型"  Canvas.Left="120" Canvas.Top="10">
+                        <TextBlock.Resources>
+                            <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                                <sys:String>类型</sys:String>
+                                <sys:String>Type</sys:String>
+                            </x:Array>
+                        </TextBlock.Resources>
+                    </TextBlock>
+                    <TextBlock x:Name="TBCoinId" Text="id="  Canvas.Left="245" Canvas.Top="10"/>
+                    <TextBlock Text="X坐标"  Canvas.Left="110" Canvas.Top="35" Width="50" TextAlignment="Center">
+                        <TextBlock.Resources>
+                            <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                                <sys:String>X坐标</sys:String>
+                                <sys:String>X</sys:String>
+                            </x:Array>
+                        </TextBlock.Resources>
+                    </TextBlock>
+                    <darkstyle:DarkTextBox x:Name="TBCoinX" Text="0" Canvas.Left="160" Canvas.Top="34" Width="180" 
+                                 PreviewKeyDown="TBCoinX_PreviewKeyDown"  BorderThickness="1"/>
+                    <TextBlock Text="Y坐标"  Canvas.Left="110" Canvas.Top="61" Width="50" TextAlignment="Center">
+                        <TextBlock.Resources>
+                            <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                                <sys:String>Y坐标</sys:String>
+                                <sys:String>Y</sys:String>
+                            </x:Array>
+                        </TextBlock.Resources>
+                    </TextBlock>
+                    <darkstyle:DarkTextBox x:Name="TBCoinY" Text="0" Canvas.Left="160" Canvas.Top="60" Width="180"
+                                 PreviewKeyDown="TBCoinY_PreviewKeyDown"  BorderThickness="1"/>
+                    <TextBlock Text="大小"  Canvas.Left="110" Canvas.Top="113" Width="50" TextAlignment="Center">
+                        <TextBlock.Resources>
+                            <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                                <sys:String>大小</sys:String>
+                                <sys:String>Size</sys:String>
+                            </x:Array>
+                        </TextBlock.Resources>
+                    </TextBlock>
+                    <darkstyle:DarkTextBox x:Name="TBCoinSize" Text="0" Canvas.Left="160" Canvas.Top="112" Width="180"
+                                 PreviewKeyDown="TBCoinSize_PreviewKeyDown"  BorderThickness="1"/>
+                    <TextBlock Text="卡片"  Canvas.Left="110" Canvas.Top="87" Width="50" TextAlignment="Center">
+                        <TextBlock.Resources>
+                            <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                                <sys:String>卡片</sys:String>
+                                <sys:String>Card</sys:String>
+                            </x:Array>
+                        </TextBlock.Resources>
+                    </TextBlock>
+                    <local:MyComboBox x:Name="CBCoinCard" SelectionChanged="CBCoinCard_SelectionChanged" Tag="CardType"
+                                          ScrollViewer.VerticalScrollBarVisibility="Hidden" ScrollViewer.CanContentScroll="False"
+                            Canvas.Left="160" Canvas.Top="83"  Width="180"/>
+                    <GroupBox BorderThickness="0.5" Header="属性" Canvas.Left="120" Canvas.Top="143" Height="94" Width="160">
+                        <GroupBox.Resources>
+                            <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                                <sys:String>倒计时</sys:String>
+                                <sys:String>Countdown</sys:String>
+                            </x:Array>
+                        </GroupBox.Resources>
+                        <Canvas>
+                            <darkstyle:DarkCheckBox x:Name="CBCoinVisible" Content="隐形"  Canvas.Left="5" Canvas.Top="5" Click="CBCoinVisible_Click">
+                                <darkstyle:DarkCheckBox.Resources>
+                                    <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                                        <sys:String>隐形</sys:String>
+                                        <sys:String>InVisible</sys:String>
+                                    </x:Array>
+                                </darkstyle:DarkCheckBox.Resources>
+                            </darkstyle:DarkCheckBox>
+                            <darkstyle:DarkCheckBox x:Name="CBCoinCollected" Content="收集"  Canvas.Left="5" Canvas.Top="27" Click="CBCoinCollected_Click">
+                                <darkstyle:DarkCheckBox.Resources>
+                                    <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                                        <sys:String>收集</sys:String>
+                                        <sys:String>Collected</sys:String>
+                                    </x:Array>
+                                </darkstyle:DarkCheckBox.Resources>
+                            </darkstyle:DarkCheckBox>
+                            <darkstyle:DarkCheckBox x:Name="CBCoinHalo" Content="光环"  Canvas.Left="5" Canvas.Top="49" Click="CBCoinHalo_Click">
+                                <darkstyle:DarkCheckBox.Resources>
+                                    <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                                        <sys:String>光环</sys:String>
+                                        <sys:String>Halo</sys:String>
+                                    </x:Array>
+                                </darkstyle:DarkCheckBox.Resources>
+                            </darkstyle:DarkCheckBox>
+                        </Canvas>
+                    </GroupBox>
+                </Canvas>
+            </TabItem>
+            <TabItem Foreground="White" Header="场地物品" TabIndex="4"  Background="#FF252526" Style="{DynamicResource TabItemStyle1}">
+                <TabItem.Resources>
+                    <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                        <sys:String>场地物品</sys:String>
+                        <sys:String>Griditems</sys:String>
+                    </x:Array>
+                </TabItem.Resources>
+                <Canvas Background="#FF252525">
+                    <ListBox x:Name="LBGriditems" Width="100" Height="326" Canvas.Left="10" Canvas.Top="10" SelectionChanged="LBGriditems_SelectionChanged"
+                                 Background="#FF252526" ScrollViewer.CanContentScroll="True" Style="{DynamicResource ListBoxStyle1}"/>
+                    <TextBlock x:Name="TBGriditemType" Text="类型"  Canvas.Left="120" Canvas.Top="10">
+                        <TextBlock.Resources>
+                            <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                                <sys:String>类型</sys:String>
+                                <sys:String>Type</sys:String>
+                            </x:Array>
+                        </TextBlock.Resources>
+                    </TextBlock>
+                    <TextBlock x:Name="TBGriditemId" Text="id="  Canvas.Left="245" Canvas.Top="10"/>
+                    <TextBlock Text="所在行"  Canvas.Left="110" Canvas.Top="35" Width="50" TextAlignment="Center">
+                        <TextBlock.Resources>
+                            <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                                <sys:String>所在行</sys:String>
+                                <sys:String>Row</sys:String>
+                            </x:Array>
+                        </TextBlock.Resources>
+                    </TextBlock>
+                    <darkstyle:DarkTextBox x:Name="TBGriditemRow" Text="0" Canvas.Left="160" Canvas.Top="34" Width="75" 
+                                 PreviewKeyDown="TBGriditemRow_PreviewKeyDown"  BorderThickness="1"/>
+                    <TextBlock Text="所在列"  Canvas.Left="240" Canvas.Top="35" Width="49" TextAlignment="Center">
+                        <TextBlock.Resources>
+                            <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                                <sys:String>所在列</sys:String>
+                                <sys:String>Column</sys:String>
+                            </x:Array>
+                        </TextBlock.Resources>
+                    </TextBlock>
+                    <darkstyle:DarkTextBox x:Name="TBGriditemColumn" Text="0" Canvas.Left="289" Canvas.Top="34" Width="75"
+                                 PreviewKeyDown="TBGriditemColumn_PreviewKeyDown"  BorderThickness="1"/>
+                    <darkstyle:DarkCheckBox Background="Transparent" x:Name="CBGriditemExist" Content="存在" Foreground="White" Canvas.Left="303" Canvas.Top="66"  Click="CBGriditemExist_Click">
+                        <CheckBox.Resources>
+                            <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                                <sys:String>存在</sys:String>
+                                <sys:String>Exist</sys:String>
+                            </x:Array>
+                        </CheckBox.Resources>
+                    </darkstyle:DarkCheckBox>
+                    <TextBlock Text="弹坑倒计时"  Canvas.Left="110" Canvas.Top="65" Width="76" TextAlignment="Center">
+                        <TextBlock.Resources>
+                            <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                                <sys:String>弹坑倒计时</sys:String>
+                                <sys:String>CraterTime</sys:String>
+                            </x:Array>
+                        </TextBlock.Resources>
+                    </TextBlock>
+                    <local:MySlider x:Name="SCraterDisappear" Maximum="300" Canvas.Left="186" Canvas.Top="64" ValueChanged="SCraterDisappear_ValueChanged" Width="106"/>
+                    <GroupBox BorderThickness="0.5" Header="罐子" Canvas.Left="120" Canvas.Top="87" Height="243" Width="244">
+                        <GroupBox.Resources>
+                            <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                                <sys:String>罐子</sys:String>
+                                <sys:String>Vase</sys:String>
+                            </x:Array>
+                        </GroupBox.Resources>
+                        <Canvas>
+                            <TextBlock Text="皮肤样式" Canvas.Top="13" Width="75" TextAlignment="Center">
+                                <TextBlock.Resources>
+                                    <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                                        <sys:String>皮肤样式</sys:String>
+                                        <sys:String>VaseSkin</sys:String>
+                                    </x:Array>
+                                </TextBlock.Resources>
+                            </TextBlock>
+                            <darkstyle:DarkComboBox x:Name="CBVaseSkin" SelectionChanged="CBVaseSkin_SelectionChanged"
+                                  Canvas.Left="75" Canvas.Top="9"  Width="147">
+                                <darkstyle:DarkComboBoxItem Content="问号">
+                                    <darkstyle:DarkComboBoxItem.Resources>
+                                        <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                                            <sys:String>问号</sys:String>
+                                            <sys:String>Question mark</sys:String>
+                                        </x:Array>
+                                    </darkstyle:DarkComboBoxItem.Resources>
+                                </darkstyle:DarkComboBoxItem>
+                                <darkstyle:DarkComboBoxItem Content="绿叶">
+                                    <darkstyle:DarkComboBoxItem.Resources>
+                                        <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                                            <sys:String>绿叶</sys:String>
+                                            <sys:String>Green leaf</sys:String>
+                                        </x:Array>
+                                    </darkstyle:DarkComboBoxItem.Resources>
+                                </darkstyle:DarkComboBoxItem>
+                                <darkstyle:DarkComboBoxItem Content="僵尸">
+                                    <darkstyle:DarkComboBoxItem.Resources>
+                                        <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                                            <sys:String>僵尸</sys:String>
+                                            <sys:String>Zombie head</sys:String>
+                                        </x:Array>
+                                    </darkstyle:DarkComboBoxItem.Resources>
+                                </darkstyle:DarkComboBoxItem>
+                            </darkstyle:DarkComboBox>
+                            <TextBlock Text="内容类型" Canvas.Top="48" Width="75" TextAlignment="Center">
+                                <TextBlock.Resources>
+                                    <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                                        <sys:String>内容类型</sys:String>
+                                        <sys:String>Type</sys:String>
+                                    </x:Array>
+                                </TextBlock.Resources>
+                            </TextBlock>
+                            <darkstyle:DarkComboBox x:Name="CBVaseContent" SelectionChanged="CBVaseContent_SelectionChanged"
+                                  Canvas.Left="75" Canvas.Top="45"  Width="147">
+                                <darkstyle:DarkComboBoxItem Content="无">
+                                    <darkstyle:DarkComboBoxItem.Resources>
+                                        <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                                            <sys:String>无</sys:String>
+                                            <sys:String>Empty vase</sys:String>
+                                        </x:Array>
+                                    </darkstyle:DarkComboBoxItem.Resources>
+                                </darkstyle:DarkComboBoxItem>
+                                <darkstyle:DarkComboBoxItem Content="植物">
+                                    <darkstyle:DarkComboBoxItem.Resources>
+                                        <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                                            <sys:String>植物</sys:String>
+                                            <sys:String>Plant type</sys:String>
+                                        </x:Array>
+                                    </darkstyle:DarkComboBoxItem.Resources>
+                                </darkstyle:DarkComboBoxItem>
+                                <darkstyle:DarkComboBoxItem Content="僵尸" >
+                                    <darkstyle:DarkComboBoxItem.Resources>
+                                        <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                                            <sys:String>僵尸</sys:String>
+                                            <sys:String>Zombie type</sys:String>
+                                        </x:Array>
+                                    </darkstyle:DarkComboBoxItem.Resources>
+                                </darkstyle:DarkComboBoxItem>
+                                <darkstyle:DarkComboBoxItem Content="阳光">
+                                    <darkstyle:DarkComboBoxItem.Resources>
+                                        <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                                            <sys:String>阳光</sys:String>
+                                            <sys:String>Sun type</sys:String>
+                                        </x:Array>
+                                    </darkstyle:DarkComboBoxItem.Resources>
+                                </darkstyle:DarkComboBoxItem>
+                            </darkstyle:DarkComboBox>
+                            <TextBlock Text="僵尸类型" Canvas.Top="83" Width="75" TextAlignment="Center">
+                                <TextBlock.Resources>
+                                    <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                                        <sys:String>僵尸类型</sys:String>
+                                        <sys:String>Zombie</sys:String>
+                                    </x:Array>
+                                </TextBlock.Resources>
+                            </TextBlock>
+                            <local:MyComboBox x:Name="CBVaseZombie" Tag="ZombieType" SelectionChanged="CBVaseZombie_SelectionChanged"
+                                          ScrollViewer.VerticalScrollBarVisibility="Hidden" ScrollViewer.CanContentScroll="False"
+                            Canvas.Left="75" Canvas.Top="80"  Width="147"/>
+                            <TextBlock Text="植物类型" Canvas.Top="118" Width="75" TextAlignment="Center">
+                                <TextBlock.Resources>
+                                    <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                                        <sys:String>植物类型</sys:String>
+                                        <sys:String>Plant</sys:String>
+                                    </x:Array>
+                                </TextBlock.Resources>
+                            </TextBlock>
+                            <local:MyComboBox x:Name="CBVasePlant" Tag="PlantType" SelectionChanged="CBVasePlant_SelectionChanged"
+                                    ScrollViewer.VerticalScrollBarVisibility="Hidden" ScrollViewer.CanContentScroll="False"
+                                    Canvas.Left="75" Canvas.Top="115"  Width="147"/>
+                            <TextBlock Text="阳光数量" Canvas.Top="153" Width="75" TextAlignment="Center">
+                                <TextBlock.Resources>
+                                    <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                                        <sys:String>阳光数量</sys:String>
+                                        <sys:String>Sun</sys:String>
+                                    </x:Array>
+                                </TextBlock.Resources>
+                            </TextBlock>
+                            <darkstyle:DarkTextBox x:Name="TBVaseSun" Text="0" Canvas.Left="75" Canvas.Top="152" Width="147"
+                                 PreviewKeyDown="TBVaseSun_PreviewKeyDown"  BorderThickness="1"/>
+                            <TextBlock Text="透视" Canvas.Top="186" Width="75" TextAlignment="Center">
+                                <TextBlock.Resources>
+                                    <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                                        <sys:String>透视</sys:String>
+                                        <sys:String>Perspect</sys:String>
+                                    </x:Array>
+                                </TextBlock.Resources>
+                            </TextBlock>
+                            <local:MySlider x:Name="SVaseTransparent" Maximum="10" Canvas.Left="75" Canvas.Top="183" ValueChanged="SVaseTransparent_ValueChanged"  Width="147"/>
+                        </Canvas>
+                    </GroupBox>
+                </Canvas>
+            </TabItem>
+            <TabItem Foreground="White" Header="卡槽" TabIndex="5"  Background="#FF252526" Style="{DynamicResource TabItemStyle1}">
+                <TabItem.Resources>
+                    <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                        <sys:String>卡槽</sys:String>
+                        <sys:String>CardSlot</sys:String>
+                    </x:Array>
+                </TabItem.Resources>
+                <Canvas Background="#FF252525">
+                    <ListBox x:Name="LBCards" Width="100" Height="326" Canvas.Left="10" Canvas.Top="10" SelectionChanged="LBCards_SelectionChanged"
+                                 Background="#FF252526" ScrollViewer.CanContentScroll="True" Style="{DynamicResource ListBoxStyle1}"/>
+                    <darkstyle:DarkCheckBox x:Name="CBCardSlotVisible" Content="整体可见" Canvas.Left="123" Canvas.Top="14"  Click="CBCardSlotVisible_Click">
+                        <darkstyle:DarkCheckBox.Resources>
+                            <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                                <sys:String>整体可见</sys:String>
+                                <sys:String>Visible</sys:String>
+                            </x:Array>
+                        </darkstyle:DarkCheckBox.Resources>
+                    </darkstyle:DarkCheckBox>
+                    <TextBlock Text="卡槽格数"  Canvas.Left="191" Canvas.Top="13" Width="98" TextAlignment="Center">
+                        <TextBlock.Resources>
+                            <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                                <sys:String>卡槽格数</sys:String>
+                                <sys:String>CardCount</sys:String>
+                            </x:Array>
+                        </TextBlock.Resources>
+                    </TextBlock>
+                    <darkstyle:DarkComboBox x:Name="CBCardNum" SelectionChanged="CBCardNum_SelectionChanged"
+                                  Canvas.Left="289" Canvas.Top="10"  Width="80">
+                        <darkstyle:DarkComboBoxItem Content="0" />
+                        <darkstyle:DarkComboBoxItem Content="1" />
+                        <darkstyle:DarkComboBoxItem Content="2" />
+                        <darkstyle:DarkComboBoxItem Content="3" />
+                        <darkstyle:DarkComboBoxItem Content="4" />
+                        <darkstyle:DarkComboBoxItem Content="5" />
+                        <darkstyle:DarkComboBoxItem Content="6" />
+                        <darkstyle:DarkComboBoxItem Content="7" />
+                        <darkstyle:DarkComboBoxItem Content="8" />
+                        <darkstyle:DarkComboBoxItem Content="9" />
+                        <darkstyle:DarkComboBoxItem Content="10" />
+                    </darkstyle:DarkComboBox>
+                    <TextBlock Text="X坐标"  Canvas.Left="110" Canvas.Top="47" Width="50" TextAlignment="Center">
+                        <TextBlock.Resources>
+                            <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                                <sys:String>X坐标</sys:String>
+                                <sys:String>X</sys:String>
+                            </x:Array>
+                        </TextBlock.Resources>
+                    </TextBlock>
+                    <darkstyle:DarkTextBox x:Name="TBCardX" Text="0" Canvas.Left="160" Canvas.Top="45" Width="75" 
+                                 PreviewKeyDown="TBCardX_PreviewKeyDown"  BorderThickness="1"/>
+                    <TextBlock Text="Y坐标"  Canvas.Left="240" Canvas.Top="47" Width="49" TextAlignment="Center">
+                        <TextBlock.Resources>
+                            <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                                <sys:String>Y坐标</sys:String>
+                                <sys:String>Y</sys:String>
+                            </x:Array>
+                        </TextBlock.Resources>
+                    </TextBlock>
+                    <darkstyle:DarkTextBox x:Name="TBCardY" Text="0" Canvas.Left="289" Canvas.Top="45" 
+                                 PreviewKeyDown="TBCardY_PreviewKeyDown"  BorderThickness="1" Width="75"/>
+                    <TextBlock Text="卡片"  Canvas.Left="110" Canvas.Top="113" Width="60" TextAlignment="Center">
+                        <TextBlock.Resources>
+                            <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                                <sys:String>卡片</sys:String>
+                                <sys:String>Card</sys:String>
+                            </x:Array>
+                        </TextBlock.Resources>
+                    </TextBlock>
+                    <local:MyComboBox x:Name="CBCardType" Tag="CardType" SelectionChanged="CBCardType_SelectionChanged"
+                                          ScrollViewer.VerticalScrollBarVisibility="Hidden" ScrollViewer.CanContentScroll="False"
+                            Canvas.Left="170" Canvas.Top="109"  Width="194"/>
+                    <TextBlock Text="模仿者"  Canvas.Left="110" Canvas.Top="148" Width="60" TextAlignment="Center">
+                        <TextBlock.Resources>
+                            <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                                <sys:String>模仿者</sys:String>
+                                <sys:String>Imitative</sys:String>
+                            </x:Array>
+                        </TextBlock.Resources>
+                    </TextBlock>
+                    <local:MyComboBox x:Name="CBCardTypeImitative" Tag="CardType" SelectionChanged="CBCardTypeImitative_SelectionChanged"
+                                          ScrollViewer.VerticalScrollBarVisibility="Hidden" ScrollViewer.CanContentScroll="False"
+                            Canvas.Left="170" Canvas.Top="145"  Width="194"/>
+                    <GroupBox BorderThickness="0.5" Header="属性" Canvas.Left="120" Canvas.Top="239" Height="90" Width="156">
+                        <GroupBox.Resources>
+                            <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                                <sys:String>属性</sys:String>
+                                <sys:String>Property</sys:String>
+                            </x:Array>
+                        </GroupBox.Resources>
+                        <Canvas>
+                            <darkstyle:DarkCheckBox x:Name="CBCardVisible" Content="隐形"  Canvas.Left="5" Canvas.Top="5" Click="CBCardVisible_Click">
+                                <darkstyle:DarkCheckBox.Resources>
+                                    <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                                        <sys:String>隐形</sys:String>
+                                        <sys:String>InVisible</sys:String>
+                                    </x:Array>
+                                </darkstyle:DarkCheckBox.Resources>
+                            </darkstyle:DarkCheckBox>
+                            <darkstyle:DarkCheckBox x:Name="CBCardEnable" Content="可用"  Canvas.Left="5" Canvas.Top="27" Click="CBCardEnable_Click">
+                                <darkstyle:DarkCheckBox.Resources>
+                                    <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                                        <sys:String>可用</sys:String>
+                                        <sys:String>Enable</sys:String>
+                                    </x:Array>
+                                </darkstyle:DarkCheckBox.Resources>
+                            </darkstyle:DarkCheckBox>
+                            <darkstyle:DarkCheckBox x:Name="CBCardActive" Content="冷却"  Canvas.Left="5" Canvas.Top="49" Click="CBCardActive_Click">
+                                <darkstyle:DarkCheckBox.Resources>
+                                    <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                                        <sys:String>冷却</sys:String>
+                                        <sys:String>IsCD</sys:String>
+                                    </x:Array>
+                                </darkstyle:DarkCheckBox.Resources>
+                            </darkstyle:DarkCheckBox>
+                        </Canvas>
+                    </GroupBox>
+                    <TextBlock Text="冷却"  Canvas.Left="110" Canvas.Top="79" Width="60" TextAlignment="Center">
+                        <TextBlock.Resources>
+                            <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                                <sys:String>冷却</sys:String>
+                                <sys:String>CD</sys:String>
+                            </x:Array>
+                        </TextBlock.Resources>
+                    </TextBlock>
+                    <darkstyle:DarkTextBox x:Name="TBCoolDown" Text="0" Canvas.Left="170" Canvas.Top="77" Width="194" 
+                                 PreviewKeyDown="TBCoolDown_PreviewKeyDown"  BorderThickness="1"/>
+                    <TextBlock Text="冷却"  Canvas.Left="110" Canvas.Top="177" Width="60" TextAlignment="Center">
+                        <TextBlock.Resources>
+                            <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                                <sys:String>冷却</sys:String>
+                                <sys:String>CD</sys:String>
+                            </x:Array>
+                        </TextBlock.Resources>
+                    </TextBlock>
+                    <local:MySlider x:Name="SCardCoolDowm" Maximum="80" Canvas.Left="170" Canvas.Top="175" ValueChanged="SCardCoolDowm_ValueChanged"  Width="194"/>
+                    <TextBlock Text="传送带"  Canvas.Left="110" Canvas.Top="209" Width="60" TextAlignment="Center">
+                        <TextBlock.Resources>
+                            <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                                <sys:String>传送带</sys:String>
+                                <sys:String>BeltX</sys:String>
+                            </x:Array>
+                        </TextBlock.Resources>
+                    </TextBlock>
+                    <local:MySlider x:Name="SCardBeltX" Maximum="600" Canvas.Left="170" Canvas.Top="207" ValueChanged="SCardBeltX_ValueChanged"  Width="194"/>
+                </Canvas>
+            </TabItem>
+            <TabItem Foreground="White" Header="杂项"  TabIndex="6"  Background="#FF252526" Style="{DynamicResource TabItemStyle1}">
+                <TabItem.Resources>
+                    <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                        <sys:String>杂项</sys:String>
+                        <sys:String>Miscellaneous</sys:String>
+                    </x:Array>
+                </TabItem.Resources>
+                <Canvas Background="#FF252525">
+                    <GroupBox BorderThickness="0.5" Header="宝石迷阵" Canvas.Left="10" Canvas.Top="10" Height="163" Width="300">
+                        <GroupBox.Resources>
+                            <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                                <sys:String>宝石迷阵</sys:String>
+                                <sys:String>Beghouled</sys:String>
+                            </x:Array>
+                        </GroupBox.Resources>
+                        <Canvas>
+                            <TextBlock Text="弹坑"  Canvas.Left="10" Canvas.Top="10">
+                                <TextBlock.Resources>
+                                    <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                                        <sys:String>弹坑</sys:String>
+                                        <sys:String>Crater</sys:String>
+                                    </x:Array>
+                                </TextBlock.Resources>
+                            </TextBlock>
+                            <StackPanel Canvas.Left="10" Canvas.Top="38" x:Name="SPCrater" Orientation="Horizontal"/>
+                            <darkstyle:DarkCheckBox x:Name="CBUpgradedRepeater" Content="双发射手"  Canvas.Left="172" Canvas.Top="55" Click="CBUpgradedRepeater_Click">
+                                <darkstyle:DarkCheckBox.Resources>
+                                    <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                                        <sys:String>双发射手</sys:String>
+                                        <sys:String>Repeater</sys:String>
+                                    </x:Array>
+                                </darkstyle:DarkCheckBox.Resources>
+                            </darkstyle:DarkCheckBox>
+                            <darkstyle:DarkCheckBox x:Name="CBUpgradedFumeshroon" Content="大喷菇"  Canvas.Left="172" Canvas.Top="76" Click="CBUpgradedFumeshroon_Click">
+                                <darkstyle:DarkCheckBox.Resources>
+                                    <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                                        <sys:String>大喷菇</sys:String>
+                                        <sys:String>Fumeshroom</sys:String>
+                                    </x:Array>
+                                </darkstyle:DarkCheckBox.Resources>
+                            </darkstyle:DarkCheckBox>
+                            <darkstyle:DarkCheckBox x:Name="CBUpgradedTallnut" Content="高坚果"  Canvas.Left="172" Canvas.Top="98" Click="CBUpgradedTallnut_Click">
+                                <darkstyle:DarkCheckBox.Resources>
+                                    <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                                        <sys:String>高坚果</sys:String>
+                                        <sys:String>Tallnut</sys:String>
+                                    </x:Array>
+                                </darkstyle:DarkCheckBox.Resources>
+                            </darkstyle:DarkCheckBox>
+                        </Canvas>
+                    </GroupBox>
+                    <TextBlock Text="属性倒计时"  Canvas.Left="10" Canvas.Top="187">
+                        <TextBlock.Resources>
+                            <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                                <sys:String>属性倒计时</sys:String>
+                                <sys:String>PropTime</sys:String>
+                            </x:Array>
+                        </TextBlock.Resources>
+                    </TextBlock>
+                    <local:MySlider x:Name="SAttributeTime" Maximum="80" Canvas.Left="82" Canvas.Top="186" ValueChanged="SAttributeTime_ValueChanged"  Width="195"/>
+                    <TextBlock Text="关卡进程" Canvas.Top="220" Width="82" TextAlignment="Center">
+                        <TextBlock.Resources>
+                            <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                                <sys:String>关卡进程</sys:String>
+                                <sys:String>Process</sys:String>
+                            </x:Array>
+                        </TextBlock.Resources>
+                    </TextBlock>
+                    <darkstyle:DarkTextBox x:Name="TBLevelProcess" Text="0" Canvas.Left="82" Canvas.Top="220" Width="195" 
+                                 PreviewKeyDown="TBLevelProcess_PreviewKeyDown"  BorderThickness="1"/>
+                    <TextBlock Text="关卡轮数" Canvas.Top="252" Width="82" TextAlignment="Center">
+                        <TextBlock.Resources>
+                            <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                                <sys:String>关卡轮数</sys:String>
+                                <sys:String>Round</sys:String>
+                            </x:Array>
+                        </TextBlock.Resources>
+                    </TextBlock>
+                    <darkstyle:DarkTextBox x:Name="TBLevelRound" Text="0" Canvas.Left="82" Canvas.Top="252" Width="195" 
+                                 PreviewKeyDown="TBLevelRound_PreviewKeyDown"  BorderThickness="1"/>
+                    <TextBlock Text="场景类型" Canvas.Top="282" Width="82" TextAlignment="Center">
+                        <TextBlock.Resources>
+                            <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                                <sys:String>场景类型</sys:String>
+                                <sys:String>SceneType</sys:String>
+                            </x:Array>
+                        </TextBlock.Resources>
+                    </TextBlock>
+                    <local:MyComboBox x:Name="CBSceneType" Tag="SceneType" Canvas.Left="82" Canvas.Top="279"  Width="195" SelectionChanged="CBSceneType_SelectionChanged"
+                                      ScrollViewer.CanContentScroll="False" ScrollViewer.VerticalScrollBarVisibility="Hidden"/>
+                </Canvas>
+            </TabItem>
+            <TabItem Foreground="White" Header="背景音乐"  TabIndex="7"  Background="#FF252526" Style="{DynamicResource TabItemStyle1}">
+                <TabItem.Resources>
+                    <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                        <sys:String>背景音乐</sys:String>
+                        <sys:String>Music</sys:String>
+                    </x:Array>
+                </TabItem.Resources>
+                <Canvas Background="#FF252525">
+                    <TextBlock Text="音乐曲目"  Canvas.Left="36" Canvas.Top="51">
+                        <TextBlock.Resources>
+                            <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                                <sys:String>音乐曲目</sys:String>
+                                <sys:String>Music</sys:String>
+                            </x:Array>
+                        </TextBlock.Resources>
+                    </TextBlock>
+                    <local:MyComboBox x:Name="CBMusicType" Tag="MusicType" SelectionChanged="CBMusicType_SelectionChanged"
+                            Canvas.Left="97" Canvas.Top="47"  Width="215"/>
+                    <darkstyle:DarkCheckBox x:Name="CBINGAMEEnable" Content="INGAMEEnable"  Canvas.Left="36" Canvas.Top="83" Click="CBInGameEnanle_Click"/>
+                    <darkstyle:DarkCheckBox x:Name="CBINGAMEStart" Content="INGAMEStart"  Canvas.Left="36" Canvas.Top="113" Click="CBInGameStart_Click"/>
+                    <TextBlock Text="BPM"  Canvas.Left="36" Canvas.Top="141"/>
+                    <darkstyle:DarkTextBox x:Name="TBMusicBPM" Text="0" Canvas.Left="105" Canvas.Top="140" Width="207" BorderThickness="1" IsReadOnly="True"/>
+                    <local:MySlider x:Name="SMusicBPM" Maximum="200" Canvas.Left="36" Canvas.Top="171" ValueChanged="SMusicBPM_ValueChanged"  Width="276"/>
+                    <TextBlock Text="Ticks/Row"  Canvas.Left="36" Canvas.Top="205"/>
+                    <darkstyle:DarkTextBox x:Name="TBMusivTicksRow" Text="0" Canvas.Left="105" Canvas.Top="204" Width="207" BorderThickness="1" IsReadOnly="True"/>
+                    <local:MySlider x:Name="SMusicSpeed" Maximum="20" Minimum="1" IsDirectionReversed="True" Canvas.Left="36" Canvas.Top="231" ValueChanged="SMusicSpeed_ValueChanged"  Width="276"/>
+                    <TextBlock Text="音量"  Canvas.Left="36" Canvas.Top="265">
+                        <TextBlock.Resources>
+                            <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                                <sys:String>音量</sys:String>
+                                <sys:String>Volume</sys:String>
+                            </x:Array>
+                        </TextBlock.Resources>
+                    </TextBlock>
+                    <local:MySlider x:Name="SMusicVolumn" Maximum="100" Canvas.Left="90" Canvas.Top="263" ValueChanged="SMusicVolumn_ValueChanged"  Width="222"/>
+                </Canvas>
+            </TabItem>
+        </TabControl>
+    </Canvas>
+</Window>

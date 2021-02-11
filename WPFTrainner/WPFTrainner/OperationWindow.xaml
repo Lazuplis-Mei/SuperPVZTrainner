@@ -1,0 +1,660 @@
+﻿<Window x:Class="OperationWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PVZWPFTrainner"
+        mc:Ignorable="d" Foreground="White"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
+        xmlns:darkstyle="clr-namespace:DarkStyle;assembly=DarkStyle"
+        Loaded="Window_Loaded"
+        PreviewMouseWheel="Window_PreviewMouseWheel"
+        Title="操作窗口" Height="670" Width="600" MouseDown="Window_MouseDown"
+        WindowStyle="None" ResizeMode="NoResize" Closed="Window_Closed"
+        Background="#FF252526" WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+        <local:NegateConverter x:Key="negative"/>
+        <local:IndexValueConverter x:Key="index" IndexValue="8"/>
+    </Window.Resources>
+    <Canvas>
+        <Rectangle Stroke="Crimson" StrokeThickness="2" Height="670" Width="600"/>
+        <TextBlock Foreground="White" Text="操作窗口" FontWeight="Bold" FontSize="20"  Canvas.Left="10" Canvas.Top="10">
+            <TextBlock.Resources>
+                <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                    <sys:String>操作窗口</sys:String>
+                    <sys:String>Operation</sys:String>
+                </x:Array>
+            </TextBlock.Resources>
+        </TextBlock>
+        <darkstyle:CloseButton Canvas.Top="10" Canvas.Left="560"/>
+        <darkstyle:MinimizeButton Canvas.Left="520" Canvas.Top="10"/>
+        <TextBlock  Canvas.Left="10" Canvas.Top="35" Foreground="Crimson" Text="----------------------------------------------------------------------------------------------------------------"/>
+        <darkstyle:DarkButton x:Name="BtnStartLawnmover" Content="启动小推车" Width="140" Height="25"  Canvas.Left="30" Canvas.Top="55"  Click="BtnStartLawnmover_Click">
+            <darkstyle:DarkButton.Resources>
+                <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                    <sys:String>启动小推车</sys:String>
+                    <sys:String>StartLawnmover</sys:String>
+                </x:Array>
+            </darkstyle:DarkButton.Resources>
+        </darkstyle:DarkButton>
+        <darkstyle:DarkButton x:Name="BtnResumeLawnmover" Content="恢复小推车" Width="140" Height="25"  Canvas.Left="185" Canvas.Top="55"  Click="BtnResumeLawnmover_Click">
+            <darkstyle:DarkButton.Resources>
+                <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                    <sys:String>恢复小推车</sys:String>
+                    <sys:String>ResumeLawnmover</sys:String>
+                </x:Array>
+            </darkstyle:DarkButton.Resources>
+        </darkstyle:DarkButton>
+        <TextBlock Text="Y坐标/行" Foreground="White" Width="75" TextAlignment="Center" Canvas.Left="30" Canvas.Top="89" >
+            <TextBlock.Resources>
+                <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                    <sys:String>Y坐标/行</sys:String>
+                    <sys:String>Y/Row</sys:String>
+                </x:Array>
+            </TextBlock.Resources>
+            <TextBlock.ToolTip>
+                <local:MyToolTip Content="0代表全部行">
+                    <ToolTip.Resources>
+                        <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                            <sys:String>0代表全部行</sys:String>
+                            <sys:String>0 for all rows</sys:String>
+                        </x:Array>
+                    </ToolTip.Resources>
+                </local:MyToolTip>
+            </TextBlock.ToolTip>
+        </TextBlock>
+        <darkstyle:Numericupdown x:Name="NudRow" MaxValue="600" Canvas.Left="105" Canvas.Top="85" Height="23" Width="70"/>
+        <darkstyle:Numericupdown x:Name="NudColumn" Canvas.Left="255" MaxValue="800" Canvas.Top="85" Height="23" Width="70"/>
+        <TextBlock Text="X坐标/列" Foreground="White" Width="80" TextAlignment="Center" Canvas.Left="175" Canvas.Top="89" >
+            <TextBlock.Resources>
+                <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                    <sys:String>X坐标/列</sys:String>
+                    <sys:String>X/Column</sys:String>
+                </x:Array>
+            </TextBlock.Resources>
+            <TextBlock.ToolTip>
+                <local:MyToolTip Content="0代表全部列">
+                    <ToolTip.Resources>
+                        <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                            <sys:String>0代表全部列</sys:String>
+                            <sys:String>0 for all columns</sys:String>
+                        </x:Array>
+                    </ToolTip.Resources>
+                </local:MyToolTip>
+            </TextBlock.ToolTip>
+        </TextBlock>
+        <GroupBox BorderThickness="0.5" Header="生成植物" Canvas.Left="10" Canvas.Top="113" Height="122" Width="285">
+            <GroupBox.Resources>
+                <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                    <sys:String>生成植物</sys:String>
+                    <sys:String>CreatePlant</sys:String>
+                </x:Array>
+            </GroupBox.Resources>
+            <Canvas>
+                <TextBlock Text="类型" Foreground="White" Width="70" TextAlignment="Center" Canvas.Left="10" Canvas.Top="13" >
+                    <TextBlock.Resources>
+                        <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                            <sys:String>类型</sys:String>
+                            <sys:String>Type</sys:String>
+                        </x:Array>
+                    </TextBlock.Resources>
+                </TextBlock>
+                <local:MyComboBox x:Name="CBPlantTypes" Tag="PlantType" Canvas.Left="85" Canvas.Top="10"  Width="178"
+                                      ScrollViewer.CanContentScroll="False" ScrollViewer.VerticalScrollBarVisibility="Hidden"/>
+                <TextBlock Text="血量" Foreground="White" Width="70" TextAlignment="Center" Canvas.Left="10" Canvas.Top="38" >
+                    <TextBlock.Resources>
+                        <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                            <sys:String>血量</sys:String>
+                            <sys:String>Hp</sys:String>
+                        </x:Array>
+                    </TextBlock.Resources>
+                </TextBlock>
+                <darkstyle:DarkTextBox x:Name="TBPlantHp" Text="0" Canvas.Left="85" Canvas.Top="36" Width="178" BorderThickness="1" Height="20">
+                    <darkstyle:DarkTextBox.ToolTip>
+                        <local:MyToolTip Content="输入0代表不设置血量">
+                            <ToolTip.Resources>
+                                <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                                    <sys:String>输入0代表不设置血量</sys:String>
+                                    <sys:String>Enter 0 to set the origial hp</sys:String>
+                                </x:Array>
+                            </ToolTip.Resources>
+                        </local:MyToolTip>
+                    </darkstyle:DarkTextBox.ToolTip>
+                </darkstyle:DarkTextBox>
+                <local:MyCheckBox Content="模仿者" x:Name="CBPlantIsImitate" Canvas.Top="71" Width="70" Canvas.Left="10">
+                    <local:MyCheckBox.Resources>
+                        <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                            <sys:String>模仿者</sys:String>
+                            <sys:String>Imitate</sys:String>
+                        </x:Array>
+                    </local:MyCheckBox.Resources>
+                </local:MyCheckBox>
+                <local:MyCheckBox Content="固定" x:Name="CBPlantIsFixed" Canvas.Top="71" Canvas.Left="85">
+                    <local:MyCheckBox.Resources>
+                        <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                            <sys:String>固定</sys:String>
+                            <sys:String>Fixed</sys:String>
+                        </x:Array>
+                    </local:MyCheckBox.Resources>
+                </local:MyCheckBox>
+                <darkstyle:DarkButton x:Name="BtnCreatePlant" Content="生成" Width="123" Height="25"  Canvas.Left="140" Canvas.Top="66"  Click="BtnCreatePlant_Click">
+                    <darkstyle:DarkButton.Resources>
+                        <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                            <sys:String>生成</sys:String>
+                            <sys:String>Create</sys:String>
+                        </x:Array>
+                    </darkstyle:DarkButton.Resources>
+                </darkstyle:DarkButton>
+            </Canvas>
+        </GroupBox>
+        <GroupBox BorderThickness="0.5" Header="生成僵尸" Canvas.Left="305" Canvas.Top="114" Height="170" Width="285">
+            <GroupBox.Resources>
+                <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                    <sys:String>生成僵尸</sys:String>
+                    <sys:String>CreateZombie</sys:String>
+                </x:Array>
+            </GroupBox.Resources>
+            <Canvas>
+                <TextBlock Text="类型" Foreground="White" Width="80" TextAlignment="Center" Canvas.Left="10" Canvas.Top="13" >
+                    <TextBlock.Resources>
+                        <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                            <sys:String>类型</sys:String>
+                            <sys:String>Type</sys:String>
+                        </x:Array>
+                    </TextBlock.Resources>
+                </TextBlock>
+                <local:MyComboBox x:Name="CBZombieTypes" Tag="ZombieType" Canvas.Left="95" Canvas.Top="10"  Width="168"
+                    ScrollViewer.CanContentScroll="False" ScrollViewer.VerticalScrollBarVisibility="Hidden"/>
+                <TextBlock Text="本体血量" Foreground="White" Width="80" TextAlignment="Center" Canvas.Left="10" Canvas.Top="38" >
+                    <TextBlock.Resources>
+                        <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                            <sys:String>本体血量</sys:String>
+                            <sys:String>BodyHp</sys:String>
+                        </x:Array>
+                    </TextBlock.Resources>
+                </TextBlock>
+                <darkstyle:DarkTextBox x:Name="TBZombieBodyHp" Text="0" Canvas.Left="95" Canvas.Top="36" Width="168" BorderThickness="1" Height="20">
+                    <darkstyle:DarkTextBox.ToolTip>
+                        <local:MyToolTip Content="输入0代表不设置血量">
+                            <local:MyToolTip.Resources>
+                                <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                                    <sys:String>输入0代表不设置血量</sys:String>
+                                    <sys:String>Enter 0 to set the origial hp</sys:String>
+                                </x:Array>
+                            </local:MyToolTip.Resources>
+                        </local:MyToolTip>
+                    </darkstyle:DarkTextBox.ToolTip>
+                </darkstyle:DarkTextBox>
+                <local:MyCheckBox Content="魅惑" x:Name="CBZombieIsHypnotized" Canvas.Top="119" Canvas.Left="10" Width="80">
+                    <local:MyCheckBox.Resources>
+                        <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                            <sys:String>魅惑</sys:String>
+                            <sys:String>Hypno</sys:String>
+                        </x:Array>
+                    </local:MyCheckBox.Resources>
+                </local:MyCheckBox>
+                <darkstyle:DarkButton x:Name="BtnCreateZombie" Content="生成" Width="168" Height="25"  Canvas.Left="95" Canvas.Top="114"  Click="BtnCreateZombie_Click">
+                    <darkstyle:DarkButton.Resources>
+                        <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                            <sys:String>生成</sys:String>
+                            <sys:String>Create</sys:String>
+                        </x:Array>
+                    </darkstyle:DarkButton.Resources>
+                </darkstyle:DarkButton>
+                <TextBlock Text="I类饰品血量" Foreground="White" Width="80" TextAlignment="Center" Canvas.Left="10" Canvas.Top="63" >
+                    <TextBlock.Resources>
+                        <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                            <sys:String>I类饰品血量</sys:String>
+                            <sys:String>HatHp</sys:String>
+                        </x:Array>
+                    </TextBlock.Resources>
+                </TextBlock>
+                <darkstyle:DarkTextBox x:Name="TBZombieHatHp" Text="0" Canvas.Left="95" Canvas.Top="61" Width="168" BorderThickness="1" Height="20">
+                    <darkstyle:DarkTextBox.ToolTip>
+                        <local:MyToolTip Content="输入0代表不设置血量">
+                            <local:MyToolTip.Resources>
+                                <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                                    <sys:String>输入0代表不设置血量</sys:String>
+                                    <sys:String>Enter 0 to set the origial hp</sys:String>
+                                </x:Array>
+                            </local:MyToolTip.Resources>
+                        </local:MyToolTip>
+                    </darkstyle:DarkTextBox.ToolTip>
+                </darkstyle:DarkTextBox>
+                <TextBlock Text="II类饰品血量" Foreground="White" Width="80" TextAlignment="Center" Canvas.Left="10" Canvas.Top="88" >
+                    <TextBlock.Resources>
+                        <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                            <sys:String>II类饰品血量</sys:String>
+                            <sys:String>ShieldHp</sys:String>
+                        </x:Array>
+                    </TextBlock.Resources>
+                </TextBlock>
+                <darkstyle:DarkTextBox x:Name="TBZombieShieldHp" Text="0" Canvas.Left="95" Canvas.Top="86" Width="168" BorderThickness="1" Height="20">
+                    <darkstyle:DarkTextBox.ToolTip>
+                        <local:MyToolTip Content="输入0代表不设置血量">
+                            <local:MyToolTip.Resources>
+                                <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                                    <sys:String>输入0代表不设置血量</sys:String>
+                                    <sys:String>Enter 0 to set the origial hp</sys:String>
+                                </x:Array>
+                            </local:MyToolTip.Resources>
+                        </local:MyToolTip>
+                    </darkstyle:DarkTextBox.ToolTip>
+                </darkstyle:DarkTextBox>
+            </Canvas>
+        </GroupBox>
+        <darkstyle:DarkButton x:Name="BtnCreateLadder" Content="搭梯" Width="120" Height="25"  Canvas.Left="335" Canvas.Top="55"  Click="BtnCreateLadder_Click">
+            <darkstyle:DarkButton.Resources>
+                <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                    <sys:String>搭梯</sys:String>
+                    <sys:String>CreateLadder</sys:String>
+                </x:Array>
+            </darkstyle:DarkButton.Resources>
+        </darkstyle:DarkButton>
+        <darkstyle:DarkButton x:Name="BtnCreateGrave" Content="墓碑" Width="120" Height="25"  Canvas.Left="460" Canvas.Top="55"  Click="BtnCreateGrave_Click">
+            <darkstyle:DarkButton.Resources>
+                <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                    <sys:String>墓碑</sys:String>
+                    <sys:String>CreateGrave</sys:String>
+                </x:Array>
+            </darkstyle:DarkButton.Resources>
+        </darkstyle:DarkButton>
+        <darkstyle:DarkButton x:Name="BtnAutoLadder" Content="智能搭梯" Width="120" Height="25"  Canvas.Left="335" Canvas.Top="84"  Click="BtnAutoLadder_Click">
+            <darkstyle:DarkButton.Resources>
+                <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                    <sys:String>智能搭梯</sys:String>
+                    <sys:String>AutoLadder</sys:String>
+                </x:Array>
+            </darkstyle:DarkButton.Resources>
+            <darkstyle:DarkButton.ToolTip>
+                <local:MyToolTip Content="自动将所有南瓜所在的格子放置梯子">
+                    <local:MyToolTip.Resources>
+                        <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                            <sys:String>自动将所有南瓜所在的格子放置梯子</sys:String>
+                            <sys:String>Automatically place ladder on all pumpkins</sys:String>
+                        </x:Array>
+                    </local:MyToolTip.Resources>
+                </local:MyToolTip>
+            </darkstyle:DarkButton.ToolTip>
+        </darkstyle:DarkButton>
+        <darkstyle:DarkButton x:Name="BtnCreatRake" Content="钉耙" Width="120" Height="25"  Canvas.Left="460" Canvas.Top="84"  Click="BtnCreatRake_Click">
+            <darkstyle:DarkButton.Resources>
+                <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                    <sys:String>钉耙</sys:String>
+                    <sys:String>CreateRake</sys:String>
+                </x:Array>
+            </darkstyle:DarkButton.Resources>
+        </darkstyle:DarkButton>
+
+
+        <GroupBox BorderThickness="0.5" Header="生成物品" Canvas.Left="10" Canvas.Top="245" Height="145" Width="285">
+            <GroupBox.Resources>
+                <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                    <sys:String>生成物品</sys:String>
+                    <sys:String>CreateCoin</sys:String>
+                </x:Array>
+            </GroupBox.Resources>
+            <Canvas>
+                <TextBlock Text="类型" Foreground="White" Width="70" TextAlignment="Center" Canvas.Left="10" Canvas.Top="13" >
+                    <TextBlock.Resources>
+                        <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                            <sys:String>类型</sys:String>
+                            <sys:String>Type</sys:String>
+                        </x:Array>
+                    </TextBlock.Resources>
+                </TextBlock>
+                <local:MyComboBox x:Name="CBCoinTypes" Tag="CoinType" Canvas.Left="85" Canvas.Top="10"  Width="178"
+                                      ScrollViewer.CanContentScroll="False" ScrollViewer.VerticalScrollBarVisibility="Hidden"/>
+                <TextBlock Text="运动" Foreground="White" Width="70" TextAlignment="Center" Canvas.Left="10" Canvas.Top="39" >
+                    <TextBlock.Resources>
+                        <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                            <sys:String>运动</sys:String>
+                            <sys:String>Motion</sys:String>
+                        </x:Array>
+                    </TextBlock.Resources>
+                </TextBlock>
+                <local:MyComboBox x:Name="CBCoinMotionTypes" Tag="Coin.MotionType" Canvas.Left="85" Canvas.Top="36"  Width="178"
+                    ScrollViewer.CanContentScroll="False" ScrollViewer.VerticalScrollBarVisibility="Hidden"/>
+                <local:MyCheckBox Content="对齐网格" x:Name="CBCoinGrid" Canvas.Top="97" Canvas.Left="10" Width="70">
+                    <local:MyCheckBox.Resources>
+                        <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                            <sys:String>对齐网格</sys:String>
+                            <sys:String>UseGrid</sys:String>
+                        </x:Array>
+                    </local:MyCheckBox.Resources>
+                </local:MyCheckBox>
+                <darkstyle:DarkButton x:Name="BtnCreateCoin" Content="生成" Width="178" Height="25"  Canvas.Left="85" Canvas.Top="92"  Click="BtnCreateCoin_Click">
+                    <darkstyle:DarkButton.Resources>
+                        <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                            <sys:String>生成</sys:String>
+                            <sys:String>Create</sys:String>
+                        </x:Array>
+                    </darkstyle:DarkButton.Resources>
+                </darkstyle:DarkButton>
+                <TextBlock Text="卡片" Foreground="White" Width="70" TextAlignment="Center" Canvas.Left="10" Canvas.Top="65" >
+                    <TextBlock.Resources>
+                        <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                            <sys:String>卡片</sys:String>
+                            <sys:String>Card</sys:String>
+                        </x:Array>
+                    </TextBlock.Resources>
+                </TextBlock>
+                <local:MyComboBox x:Name="CBCardTypes" Tag="CardType" Canvas.Left="85" Canvas.Top="62"  Width="178" IsEnabled="{Binding ElementName=CBCoinTypes,Path=SelectedIndex,Converter={StaticResource index}}"
+                    ScrollViewer.CanContentScroll="False" ScrollViewer.VerticalScrollBarVisibility="Hidden"/>
+            </Canvas>
+        </GroupBox>
+        <GroupBox BorderThickness="0.5" Header="罐子" Canvas.Left="305" Canvas.Top="297" Height="198" Width="285">
+            <GroupBox.Resources>
+                <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                    <sys:String>罐子</sys:String>
+                    <sys:String>Vase</sys:String>
+                </x:Array>
+            </GroupBox.Resources>
+            <Canvas>
+                <TextBlock Text="皮肤样式" Canvas.Top="13" Width="75" TextAlignment="Center" Canvas.Left="10">
+                    <TextBlock.Resources>
+                        <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                            <sys:String>皮肤样式</sys:String>
+                            <sys:String>VaseSkin</sys:String>
+                        </x:Array>
+                    </TextBlock.Resources>
+                </TextBlock>
+                <darkstyle:DarkComboBox x:Name="CBVaseSkin" IsEnabled="{Binding ElementName=CBVaseRandom,Path=IsChecked,Converter={StaticResource negative}}"
+                    Canvas.Left="90" Canvas.Top="10"  Width="173">
+                    <darkstyle:DarkComboBoxItem Content="问号">
+                        <darkstyle:DarkComboBoxItem.Resources>
+                            <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                                <sys:String>问号</sys:String>
+                                <sys:String>Question mark</sys:String>
+                            </x:Array>
+                        </darkstyle:DarkComboBoxItem.Resources>
+                    </darkstyle:DarkComboBoxItem>
+                    <darkstyle:DarkComboBoxItem Content="绿叶">
+                        <darkstyle:DarkComboBoxItem.Resources>
+                            <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                                <sys:String>绿叶</sys:String>
+                                <sys:String>Green leaf</sys:String>
+                            </x:Array>
+                        </darkstyle:DarkComboBoxItem.Resources>
+                    </darkstyle:DarkComboBoxItem>
+                    <darkstyle:DarkComboBoxItem Content="僵尸">
+                        <darkstyle:DarkComboBoxItem.Resources>
+                            <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                                <sys:String>僵尸</sys:String>
+                                <sys:String>Zombie head</sys:String>
+                            </x:Array>
+                        </darkstyle:DarkComboBoxItem.Resources>
+                    </darkstyle:DarkComboBoxItem>
+                </darkstyle:DarkComboBox>
+                <TextBlock Text="内容类型" Canvas.Top="39" Width="75" TextAlignment="Center" Canvas.Left="10">
+                    <TextBlock.Resources>
+                        <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                            <sys:String>内容类型</sys:String>
+                            <sys:String>Type</sys:String>
+                        </x:Array>
+                    </TextBlock.Resources>
+                </TextBlock>
+                <darkstyle:DarkComboBox x:Name="CBVaseContent" IsEnabled="{Binding ElementName=CBVaseRandom,Path=IsChecked,Converter={StaticResource negative}}"
+                    Canvas.Left="90" Canvas.Top="36"  Width="173">
+                    <darkstyle:DarkComboBoxItem Content="无">
+                        <darkstyle:DarkComboBoxItem.Resources>
+                            <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                                <sys:String>无</sys:String>
+                                <sys:String>Empty vase</sys:String>
+                            </x:Array>
+                        </darkstyle:DarkComboBoxItem.Resources>
+                    </darkstyle:DarkComboBoxItem>
+                    <darkstyle:DarkComboBoxItem Content="植物">
+                        <darkstyle:DarkComboBoxItem.Resources>
+                            <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                                <sys:String>植物</sys:String>
+                                <sys:String>Plant type</sys:String>
+                            </x:Array>
+                        </darkstyle:DarkComboBoxItem.Resources>
+                    </darkstyle:DarkComboBoxItem>
+                    <darkstyle:DarkComboBoxItem Content="僵尸" >
+                        <darkstyle:DarkComboBoxItem.Resources>
+                            <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                                <sys:String>僵尸</sys:String>
+                                <sys:String>Zombie type</sys:String>
+                            </x:Array>
+                        </darkstyle:DarkComboBoxItem.Resources>
+                    </darkstyle:DarkComboBoxItem>
+                    <darkstyle:DarkComboBoxItem Content="阳光">
+                        <darkstyle:DarkComboBoxItem.Resources>
+                            <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                                <sys:String>阳光</sys:String>
+                                <sys:String>Sun type</sys:String>
+                            </x:Array>
+                        </darkstyle:DarkComboBoxItem.Resources>
+                    </darkstyle:DarkComboBoxItem>
+                </darkstyle:DarkComboBox>
+                <TextBlock Text="僵尸类型" Canvas.Top="65" Width="75" TextAlignment="Center" Canvas.Left="10">
+                    <TextBlock.Resources>
+                        <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                            <sys:String>僵尸类型</sys:String>
+                            <sys:String>Zombie</sys:String>
+                        </x:Array>
+                    </TextBlock.Resources>
+                </TextBlock>
+                <local:MyComboBox x:Name="CBVaseZombie" Tag="ZombieType" IsEnabled="{Binding ElementName=CBVaseRandom,Path=IsChecked,Converter={StaticResource negative}}"
+                    ScrollViewer.VerticalScrollBarVisibility="Hidden" ScrollViewer.CanContentScroll="False"
+                    Canvas.Left="90" Canvas.Top="62"  Width="173"/>
+                <TextBlock Text="植物类型" Canvas.Top="91" Width="75" TextAlignment="Center" Canvas.Left="10">
+                    <TextBlock.Resources>
+                        <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                            <sys:String>植物类型</sys:String>
+                            <sys:String>Plant</sys:String>
+                        </x:Array>
+                    </TextBlock.Resources>
+                </TextBlock>
+                <local:MyComboBox x:Name="CBVasePlant" Tag="PlantType" IsEnabled="{Binding ElementName=CBVaseRandom,Path=IsChecked,Converter={StaticResource negative}}"
+                    ScrollViewer.VerticalScrollBarVisibility="Hidden" ScrollViewer.CanContentScroll="False"
+                    Canvas.Left="90" Canvas.Top="88"  Width="173"/>
+                <TextBlock Text="阳光数量" Canvas.Top="116" Width="75" TextAlignment="Center" Canvas.Left="10">
+                    <TextBlock.Resources>
+                        <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                            <sys:String>阳光数量</sys:String>
+                            <sys:String>Sun</sys:String>
+                        </x:Array>
+                    </TextBlock.Resources>
+                </TextBlock>
+                <darkstyle:DarkTextBox x:Name="TBVaseSun" Text="0" Canvas.Left="90" Canvas.Top="114" Width="173" Height="20" IsEnabled="{Binding ElementName=CBVaseRandom,Path=IsChecked,Converter={StaticResource negative}}"
+                     BorderThickness="1"/>
+                <darkstyle:DarkButton x:Name="BtnCreateVase" Content="生成" Width="173" Height="25"  Canvas.Left="90" Canvas.Top="144"  Click="BtnCreateVase_Click">
+                    <darkstyle:DarkButton.Resources>
+                        <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                            <sys:String>生成</sys:String>
+                            <sys:String>Create</sys:String>
+                        </x:Array>
+                    </darkstyle:DarkButton.Resources>
+                </darkstyle:DarkButton>
+                <local:MyCheckBox Content="使用随机*" x:Name="CBVaseRandom" Canvas.Top="149" Canvas.Left="10" Width="80">
+                    <local:MyCheckBox.Resources>
+                        <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                            <sys:String>使用随机*</sys:String>
+                            <sys:String>Random*</sys:String>
+                        </x:Array>
+                    </local:MyCheckBox.Resources>
+                    <local:MyCheckBox.ContextMenu>
+                        <ContextMenu Foreground="White" Background="#FF252526">
+                            <MenuItem Name="MIVaseRandomExclude" IsCheckable="True" Header="排除紫卡和植物僵尸" Background="#FF252526" BorderThickness="0" Template="{DynamicResource MenuItemControlTemplate1}">
+                                <MenuItem.Resources>
+                                    <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                                        <sys:String>排除紫卡和植物僵尸</sys:String>
+                                        <sys:String>Exclude purple cards and zombotanies</sys:String>
+                                    </x:Array>
+                                </MenuItem.Resources>
+                            </MenuItem>
+                        </ContextMenu>
+                    </local:MyCheckBox.ContextMenu>
+                </local:MyCheckBox>
+            </Canvas>
+        </GroupBox>
+        <GroupBox BorderThickness="0.5" Header="生成字幕" Canvas.Left="305" Canvas.Top="505" Height="150" Width="285">
+            <GroupBox.Resources>
+                <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                    <sys:String>生成字幕</sys:String>
+                    <sys:String>CreateCaption</sys:String>
+                </x:Array>
+            </GroupBox.Resources>
+            <Canvas>
+                <TextBox x:Name="TBCaptionText" Foreground="White" VerticalContentAlignment="Center" Background="#FF252526"
+                         MaxLength="100" TextWrapping="Wrap" AcceptsReturn="True" Canvas.Left="10" Canvas.Top="10" Width="253" Height="50">
+                    <TextBox.ToolTip>
+                        <local:MyToolTip Content="在不开启ImageData时,你可以使用一些宏来为文本着色,就像在图鉴中使用{XXX}那样">
+                            <local:MyToolTip.Resources>
+                                <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                                    <sys:String>在不开启ImageData时,你可以使用一些宏来为文本着色,就像在图鉴中使用{XXX}那样</sys:String>
+                                    <sys:String>When ImageData is unchecked.You can use some macro to highlight the text,like {XXX} in the Almanac</sys:String>
+                                </x:Array>
+                            </local:MyToolTip.Resources>
+                        </local:MyToolTip>
+                    </TextBox.ToolTip>
+                </TextBox>
+                <TextBlock Text="样式" Foreground="White" Width="70" TextAlignment="Center" Canvas.Left="10" Canvas.Top="68" >
+                    <TextBlock.Resources>
+                        <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                            <sys:String>样式</sys:String>
+                            <sys:String>Style</sys:String>
+                        </x:Array>
+                    </TextBlock.Resources>
+                </TextBlock>
+                <local:MyComboBox x:Name="CBCaptionStyle" Tag="CaptionStyle" Canvas.Left="85" Canvas.Top="65"  Width="178" IsEnabled="{Binding ElementName=CBCaptionImageData,Path=IsChecked,Converter={StaticResource negative}}"
+                                      ScrollViewer.CanContentScroll="False" ScrollViewer.VerticalScrollBarVisibility="Hidden"/>
+                <local:MyCheckBox Content="图片数据" x:Name="CBCaptionImageData" Canvas.Top="99" Canvas.Left="10" Width="70">
+                    <local:MyCheckBox.Resources>
+                        <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                            <sys:String>图片数据</sys:String>
+                            <sys:String>ImgData</sys:String>
+                        </x:Array>
+                    </local:MyCheckBox.Resources>
+                </local:MyCheckBox>
+                <darkstyle:DarkButton x:Name="BtnCreateCaption" Content="生成" Width="178" Height="25"  Canvas.Left="85" Canvas.Top="94" Click="BtnCreateCaption_Click">
+                    <darkstyle:DarkButton.Resources>
+                        <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                            <sys:String>生成</sys:String>
+                            <sys:String>Create</sys:String>
+                        </x:Array>
+                    </darkstyle:DarkButton.Resources>
+                </darkstyle:DarkButton>
+            </Canvas>
+        </GroupBox>
+        <GroupBox BorderThickness="0.5" Header="生成特效" Canvas.Left="10" Canvas.Top="400" Height="110" Width="285">
+            <GroupBox.Resources>
+                <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                    <sys:String>生成特效</sys:String>
+                    <sys:String>SpecialEffects</sys:String>
+                </x:Array>
+            </GroupBox.Resources>
+            <Canvas>
+                <TextBlock Text="植物效果" Canvas.Top="13" Width="70" TextAlignment="Center" Canvas.Left="10">
+                    <TextBlock.Resources>
+                        <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                            <sys:String>植物效果</sys:String>
+                            <sys:String>Plant</sys:String>
+                        </x:Array>
+                    </TextBlock.Resources>
+                </TextBlock>
+                <local:MyComboBox x:Name="CBPlantEffectType" Tag="PlantEffectType" 
+                    ScrollViewer.VerticalScrollBarVisibility="Hidden" ScrollViewer.CanContentScroll="False"
+                    Canvas.Left="85" Canvas.Top="10"  Width="105"/>
+                <darkstyle:DarkButton x:Name="BtnCreatePlantEffectType" Content="生成" Width="68" Height="21"  Canvas.Left="195" Canvas.Top="10"  Click="BtnCreatePlantEffectType_Click">
+                    <darkstyle:DarkButton.Resources>
+                        <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                            <sys:String>生成</sys:String>
+                            <sys:String>Create</sys:String>
+                        </x:Array>
+                    </darkstyle:DarkButton.Resources>
+                </darkstyle:DarkButton>
+                <TextBlock Text="动画效果" Canvas.Top="38" Width="70" TextAlignment="Center" Canvas.Left="10">
+                    <TextBlock.Resources>
+                        <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                            <sys:String>动画效果</sys:String>
+                            <sys:String>Effect</sys:String>
+                        </x:Array>
+                    </TextBlock.Resources>
+                </TextBlock>
+                <darkstyle:DarkTextBox x:Name="TBEffectType" Text="0" Canvas.Left="85" Canvas.Top="36" Width="105" Height="20" BorderThickness="1"/>
+                <darkstyle:DarkButton x:Name="BtnCreateEffect" Content="生成" Width="68" Height="20"  Canvas.Left="195" Canvas.Top="36" Click="BtnCreateEffect_Click">
+                    <darkstyle:DarkButton.Resources>
+                        <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                            <sys:String>生成</sys:String>
+                            <sys:String>Create</sys:String>
+                        </x:Array>
+                    </darkstyle:DarkButton.Resources>
+                </darkstyle:DarkButton>
+                <TextBlock Text="音效" Canvas.Top="63" Width="70" TextAlignment="Center" Canvas.Left="10">
+                    <TextBlock.Resources>
+                        <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                            <sys:String>音效</sys:String>
+                            <sys:String>Sound</sys:String>
+                        </x:Array>
+                    </TextBlock.Resources>
+                </TextBlock>
+                <darkstyle:DarkTextBox x:Name="TBSoundType" Text="0" Canvas.Left="85" Canvas.Top="61" Width="105" Height="20" BorderThickness="1"/>
+                <darkstyle:DarkToggleButton x:Name="BtnCreateSound" Content="生成" Width="68" Height="20"  Canvas.Left="195" Canvas.Top="61" Click="BtnCreateSound_Click">
+                    <darkstyle:DarkToggleButton.Resources>
+                        <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                            <sys:String>生成</sys:String>
+                            <sys:String>Create</sys:String>
+                        </x:Array>
+                    </darkstyle:DarkToggleButton.Resources>
+                </darkstyle:DarkToggleButton>
+            </Canvas>
+        </GroupBox>
+        <GroupBox BorderThickness="0.5" Header="爆炸" Canvas.Left="10" Canvas.Top="520" Height="135" Width="285">
+            <GroupBox.Resources>
+                <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                    <sys:String>爆炸</sys:String>
+                    <sys:String>Explosion</sys:String>
+                </x:Array>
+            </GroupBox.Resources>
+            <Canvas>
+                <TextBlock Text="爆炸半径" Canvas.Top="12" Width="75" TextAlignment="Center" Canvas.Left="10">
+                    <TextBlock.Resources>
+                        <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                            <sys:String>爆炸半径</sys:String>
+                            <sys:String>Radius</sys:String>
+                        </x:Array>
+                    </TextBlock.Resources>
+                </TextBlock>
+                <darkstyle:DarkTextBox x:Name="TBExplosionRadius" Text="0" Canvas.Left="90" Canvas.Top="10" Width="173" Height="20" BorderThickness="1"/>
+                <TextBlock Text="上下界限" Canvas.Top="45" Width="75" TextAlignment="Center" Canvas.Left="10">
+                    <TextBlock.Resources>
+                        <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                            <sys:String>上下界限</sys:String>
+                            <sys:String>Bound</sys:String>
+                        </x:Array>
+                    </TextBlock.Resources>
+                </TextBlock>
+                <darkstyle:Numericupdown x:Name="NudExplosionBound" MaxValue="5" Canvas.Left="90" Canvas.Top="41" Height="23" Width="173"/>
+                <local:MyCheckBox Content="灰烬" x:Name="CBIsCinder" Canvas.Top="83" Width="62" Canvas.Left="10">
+                    <local:MyCheckBox.Resources>
+                        <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                            <sys:String>灰烬</sys:String>
+                            <sys:String>Cinder</sys:String>
+                        </x:Array>
+                    </local:MyCheckBox.Resources>
+                </local:MyCheckBox>
+                <local:MyCheckBox Content="敌方" x:Name="CBIsEnemy" Canvas.Top="83" Canvas.Left="77">
+                    <local:MyCheckBox.Resources>
+                        <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                            <sys:String>敌方</sys:String>
+                            <sys:String>Enemy</sys:String>
+                        </x:Array>
+                    </local:MyCheckBox.Resources>
+                </local:MyCheckBox>
+                <darkstyle:DarkButton x:Name="BtnCreateExplosion" Content="生成" Width="123" Height="25"  Canvas.Left="140" Canvas.Top="78"  Click="BtnCreateExplosion_Click">
+                    <darkstyle:DarkButton.Resources>
+                        <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                            <sys:String>生成</sys:String>
+                            <sys:String>Create</sys:String>
+                        </x:Array>
+                    </darkstyle:DarkButton.Resources>
+                </darkstyle:DarkButton>
+            </Canvas>
+        </GroupBox>
+
+    </Canvas>
+</Window>

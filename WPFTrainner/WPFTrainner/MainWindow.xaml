@@ -1,0 +1,390 @@
+﻿<Window x:Class="MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PVZWPFTrainner"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
+        xmlns:darkstyle="clr-namespace:DarkStyle;assembly=DarkStyle"
+        mc:Ignorable="d" AllowsTransparency="True"
+        Title="冥谷川恋"  Height="400" Width="400"
+        WindowStyle="None"  ResizeMode="NoResize"
+        Background="#FF252526" WindowStartupLocation="CenterScreen"
+        MouseDown="Window_MouseDown" Loaded="Window_Loaded" Closed="Window_Closed" PreviewKeyDown="Window_PreviewKeyDown">
+    <Window.Resources>
+        <Storyboard x:Key="Storyboard1" RepeatBehavior="Forever">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Effect).(DropShadowEffect.Opacity)" Storyboard.TargetName="textBlock">
+                <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:2" Value="1"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:4" Value="0"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Effect).(DropShadowEffect.BlurRadius)" Storyboard.TargetName="textBlock">
+                <EasingDoubleKeyFrame KeyTime="0" Value="6"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:2" Value="6"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:4" Value="6"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+    </Window.Resources>
+    <Window.Triggers>
+        <EventTrigger RoutedEvent="FrameworkElement.Loaded">
+            <BeginStoryboard Storyboard="{StaticResource Storyboard1}"/>
+        </EventTrigger>
+    </Window.Triggers>
+    <Border BorderThickness="2" BorderBrush="Crimson">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="5*"/>
+                <RowDefinition Height="2.5*"/>
+                <RowDefinition Height="30*"/>
+                <RowDefinition Height="3*"/>
+            </Grid.RowDefinitions>
+            <TextBlock Name="textBlock" Margin="10,10,160,0" Text="植物大战僵尸修改器" ToolTipService.ShowDuration="20000"
+                       FontWeight="Bold" FontSize="24" Height="30" VerticalAlignment="Top"
+                       Grid.ColumnSpan="2" Foreground="White" MouseDown="textBlock_MouseDown">
+                <TextBlock.Effect>
+                    <DropShadowEffect Color="#FF92CAF4" BlurRadius="6" Direction="-15" ShadowDepth="3"/>
+                </TextBlock.Effect>
+                <TextBlock.ToolTip>
+                    <local:MyToolTip Content="mouse double click to switch language">
+                        <ToolTip.Resources>
+                            <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                                <sys:String>mouse left double click to switch language\n右键双击查看软件信息</sys:String>
+                                <sys:String>左键双击切换语言\nmouse right double click to show about</sys:String>
+                            </x:Array>
+                        </ToolTip.Resources>
+                    </local:MyToolTip>
+                </TextBlock.ToolTip>
+                <TextBlock.Resources>
+                    <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                        <sys:String>植物大战僵尸修改器</sys:String>
+                        <sys:String>SuperPVZTrainer</sys:String>
+                    </x:Array>
+                </TextBlock.Resources>
+            </TextBlock>
+            <TextBlock Margin="25,0,105,1" Foreground="White" Text="所有常规项"
+                       VerticalAlignment="Center" FontWeight="Bold" 
+                       FontSize="14"  Grid.Row="1" Height="18">
+                <TextBlock.Resources>
+                    <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                        <sys:String>所有常规项</sys:String>
+                        <sys:String>Regular</sys:String>
+                    </x:Array>
+                </TextBlock.Resources>
+            </TextBlock>
+            <darkstyle:DarkButton Name="BtnLoadLBMain" Margin="110,0,20,1" BorderThickness="0" Content="更多功能" FontWeight="Bold" Grid.Row="1" FontSize="14" Width="70" Click="BtnLoadLBMain_Click">
+                <Button.Resources>
+                    <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                        <sys:String>更多功能</sys:String>
+                        <sys:String>More...</sys:String>
+                    </x:Array>
+                </Button.Resources>
+            </darkstyle:DarkButton>
+            <Expander x:Name="expanderPlugIns" Header="插件列表"  Collapsed="expanderPlugIns_Collapsed" Expanded="expanderPlugIns_Expanded" Foreground="White" FontSize="14" FontWeight="Bold" Grid.Row="1" Grid.Column="1" Grid.RowSpan="2" Background="Transparent" Margin="0,0,8,0">
+                <ListBox ScrollViewer.HorizontalScrollBarVisibility="Hidden" Name="ListPlugIns" FontSize="12" FontWeight="Normal" Background="Transparent"  KeyDown="LBMain_KeyDown" ScrollViewer.CanContentScroll="True" Style="{DynamicResource ListBoxStyle1}"/>
+                <Expander.Resources>
+                    <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                        <sys:String>插件列表</sys:String>
+                        <sys:String>Plugins</sys:String>
+                    </x:Array>
+                </Expander.Resources>
+            </Expander>
+            <ListBox Name="LBMain" ScrollViewer.CanContentScroll="True" ScrollViewer.HorizontalScrollBarVisibility="Hidden" 
+                     Margin="20,10,0,10" BorderThickness="0" AllowDrop="True" HorizontalAlignment="Left" Background="Transparent"
+                     KeyDown="LBMain_KeyDown" Width="178" Grid.Row="2" Style="{DynamicResource ListBoxStyle1}">
+                <ListBoxItem Name="LBISun" MouseDoubleClick="LBISun_MouseDoubleClick">
+                    <Grid Margin="0,0,-4,0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Width="1*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="修改阳光" Foreground="White">
+                            <TextBlock.Resources>
+                                <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                                    <sys:String>修改阳光</sys:String>
+                                    <sys:String>Sun</sys:String>
+                                </x:Array>
+                            </TextBlock.Resources>
+                        </TextBlock>
+                        <darkstyle:DarkTextBox Margin="5,0,0,0" x:Name="TBSun" Grid.Column="1" Text="9990" PreviewKeyDown="TBSun_PreviewKeyDown"/>
+                    </Grid>
+                </ListBoxItem>
+                <ListBoxItem Name="LBIMoney" MouseDoubleClick="LBIMoney_MouseDoubleClick">
+                    <Grid Margin="0,0,-4,0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Width="1*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="修改金钱" Foreground="White">
+                            <TextBlock.Resources>
+                                <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                                    <sys:String>修改金钱</sys:String>
+                                    <sys:String>Money</sys:String>
+                                </x:Array>
+                            </TextBlock.Resources>
+                        </TextBlock>
+                        <darkstyle:DarkTextBox Margin="5,0,0,0"  x:Name="TBMoney" Grid.Column="1" Text="999990" PreviewKeyDown="TBSun_PreviewKeyDown"/>
+                    </Grid>
+                </ListBoxItem>
+                <ListBoxItem Name="LBISunMax" MouseDoubleClick="LBISunMax_MouseDoubleClick">
+                    <Grid Margin="0,0,-4,0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Width="1*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="阳光上限" Foreground="White">
+                            <TextBlock.Resources>
+                                <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                                    <sys:String>阳光上限</sys:String>
+                                    <sys:String>MaxSun</sys:String>
+                                </x:Array>
+                            </TextBlock.Resources>
+                        </TextBlock>
+                        <darkstyle:DarkTextBox Margin="5,0,0,0" x:Name="TBSunMax" Grid.Column="1" Text="9990" PreviewKeyDown="TBSun_PreviewKeyDown"/>
+                    </Grid>
+                </ListBoxItem>
+                <local:MyCheckBox x:Name="CBBGRunable" Content="允许后台运行"  Click="CBBGRunable_Click">
+                    <local:MyCheckBox.Resources>
+                        <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                            <sys:String>允许后台运行</sys:String>
+                            <sys:String>BackgroundRunning</sys:String>
+                        </x:Array>
+                    </local:MyCheckBox.Resources>
+                </local:MyCheckBox>
+                <local:MyCheckBox x:Name="CBFreePlanting" Content="免费种植模式" Click="CBFreePlanting_Click" >
+                    <local:MyCheckBox.Resources>
+                        <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                            <sys:String>免费种植模式</sys:String>
+                            <sys:String>FreePlanting</sys:String>
+                        </x:Array>
+                    </local:MyCheckBox.Resources>
+                </local:MyCheckBox>
+                <local:MyCheckBox x:Name="CBNoCD" Content="取消冷却时间"  Click="CBNoCD_Click" >
+                    <local:MyCheckBox.Resources>
+                        <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                            <sys:String>取消冷却时间</sys:String>
+                            <sys:String>CancelPlantCD</sys:String>
+                        </x:Array>
+                    </local:MyCheckBox.Resources>
+                </local:MyCheckBox>
+                <local:MyCheckBox x:Name="CBAutoCollect" Content="自动收集资源" Click="CBAutoCollect_Click">
+                    <local:MyCheckBox.Resources>
+                        <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                            <sys:String>自动收集资源</sys:String>
+                            <sys:String>AutoCollecting</sys:String>
+                        </x:Array>
+                    </local:MyCheckBox.Resources>
+                </local:MyCheckBox>
+                <local:MyCheckBox x:Name="CBIgnoreRes" Content="无视资源属性" Click="CBIgnoreRes_Click">
+                    <local:MyCheckBox.Resources>
+                        <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                            <sys:String>无视资源属性</sys:String>
+                            <sys:String>IgnoreResources</sys:String>
+                        </x:Array>
+                    </local:MyCheckBox.Resources>
+                </local:MyCheckBox>
+                <local:MyCheckBox x:Name="CBShowHidden" Content="显隐藏小游戏"  Click="CBShowHidden_Click" >
+                    <local:MyCheckBox.Resources>
+                        <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                            <sys:String>显隐藏小游戏</sys:String>
+                            <sys:String>ShowHiddenLevel</sys:String>
+                        </x:Array>
+                    </local:MyCheckBox.Resources>
+                </local:MyCheckBox>
+                <local:MyCheckBox x:Name="CBOverlapPlanting" Content="激活重叠放置"  Click="CBOverlapPlanting_Click">
+                    <local:MyCheckBox.Resources>
+                        <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                            <sys:String>激活重叠放置</sys:String>
+                            <sys:String>OverlapPlanting</sys:String>
+                        </x:Array>
+                    </local:MyCheckBox.Resources>
+                </local:MyCheckBox>
+                <local:MyCheckBox x:Name="CBFullScreenFog" Content="全屏浓雾覆盖" Click="CBFullScreenFog_Click" >
+                    <local:MyCheckBox.Resources>
+                        <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                            <sys:String>全屏浓雾覆盖</sys:String>
+                            <sys:String>FullScreenFog</sys:String>
+                        </x:Array>
+                    </local:MyCheckBox.Resources>
+                </local:MyCheckBox>
+                <local:MyCheckBox x:Name="CBConveyorBeltNoDelay" Content="传送带无延迟" Click="CBConveyorBeltNoDelay_Click" >
+                    <local:MyCheckBox.Resources>
+                        <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                            <sys:String>传送带无延迟</sys:String>
+                            <sys:String>ConveyorBeltNoDelay</sys:String>
+                        </x:Array>
+                    </local:MyCheckBox.Resources>
+                </local:MyCheckBox>
+                <local:MyCheckBox x:Name="CBBlockZombie" Content="暂停僵尸刷新" Click="CBBlockZombie_Click">
+                    <local:MyCheckBox.Resources>
+                        <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                            <sys:String>暂停僵尸刷新</sys:String>
+                            <sys:String>PauseSpawning</sys:String>
+                        </x:Array>
+                    </local:MyCheckBox.Resources>
+                </local:MyCheckBox>
+                <local:MyCheckBox x:Name="CBNoUpperLimit" Content="去除资源上限" Click="CBNoUpperLimit_Click">
+                    <local:MyCheckBox.Resources>
+                        <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                            <sys:String>去除资源上限</sys:String>
+                            <sys:String>NoUpperLimit</sys:String>
+                        </x:Array>
+                    </local:MyCheckBox.Resources>
+                </local:MyCheckBox>
+                <local:MyCheckBox x:Name="CBVasePerspect" Content="罐子透视" Click="CBVasePerspect_Click" >
+                    <local:MyCheckBox.Resources>
+                        <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                            <sys:String>罐子透视</sys:String>
+                            <sys:String>VasePerspect</sys:String>
+                        </x:Array>
+                    </local:MyCheckBox.Resources>
+                </local:MyCheckBox>
+                <local:MyCheckBox x:Name="CBFogPerspect" Content="浓雾透视" Click="CBFogPerspect_Click" >
+                    <local:MyCheckBox.Resources>
+                        <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                            <sys:String>浓雾透视</sys:String>
+                            <sys:String>FogPerspect</sys:String>
+                        </x:Array>
+                    </local:MyCheckBox.Resources>
+                </local:MyCheckBox>
+                <local:MyCheckBox x:Name="CBLockShovel" Content="锁定铲子" Click="CBLockShovel_Click">
+                    <local:MyCheckBox.Resources>
+                        <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                            <sys:String>锁定铲子</sys:String>
+                            <sys:String>LockShovel</sys:String>
+                        </x:Array>
+                    </local:MyCheckBox.Resources>
+                </local:MyCheckBox>
+                <darkstyle:DarkButton Width="140" Margin="5,0,0,0" x:Name="BtnKillAllZombies" Content="秒杀全部僵尸" Style="{DynamicResource LBIBtnnStyle1}" Click="BtnKillAllZombies_Click">
+                    <darkstyle:DarkButton.Resources>
+                        <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                            <sys:String>秒杀全部僵尸</sys:String>
+                            <sys:String>KillAllZombie</sys:String>
+                        </x:Array>
+                    </darkstyle:DarkButton.Resources>
+                </darkstyle:DarkButton>
+                <darkstyle:DarkButton Width="140" Margin="5,0,0,0"  x:Name="BtnHypnotizeAllZombies" Content="魅惑全部僵尸" Style="{DynamicResource LBIBtnnStyle1}" Click="BtnHypnotizeAllZombies_Click">
+                    <darkstyle:DarkButton.Resources>
+                        <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                            <sys:String>魅惑全部僵尸</sys:String>
+                            <sys:String>HypnoAllZombie</sys:String>
+                        </x:Array>
+                    </darkstyle:DarkButton.Resources>
+                </darkstyle:DarkButton>
+                <darkstyle:DarkButton Width="140" Margin="5,0,0,0" x:Name="BtnKillAllPlants" Content="清除全部植物" Style="{DynamicResource LBIBtnnStyle1}" Click="BtnKillAllPlants_Click">
+                    <darkstyle:DarkButton.Resources>
+                        <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                            <sys:String>清除全部植物</sys:String>
+                            <sys:String>KillAllPlants</sys:String>
+                        </x:Array>
+                    </darkstyle:DarkButton.Resources>
+                </darkstyle:DarkButton>
+            </ListBox>
+            <darkstyle:DarkButton BorderThickness="0" x:Name="BtnFindGame" Content="寻找游戏" Margin="38,15,80,15" FontSize="14" FontWeight="Bold" Width="80"
+                    Grid.Column="1"  Click="BtnFindGame_Click" MouseDown="BtnFindGame_MouseDown" MouseDoubleClick="BtnFindGame_MouseDoubleClick">
+                <Button.ToolTip>
+                    <local:MyToolTip Content="双击可手动选择进程，右键重新打开进程，中键强制多开进程">
+                        <ToolTip.Resources>
+                            <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                                <sys:String>双击可手动选择进程，右键重新打开进程，中键强制多开进程</sys:String>
+                                <sys:String>Select process manually by double click.\nRight button can restart process when it is closed.\nMid button can open process forcely</sys:String>
+                            </x:Array>
+                        </ToolTip.Resources>
+                    </local:MyToolTip>
+                </Button.ToolTip>
+                <Button.Resources>
+                    <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                        <sys:String>寻找游戏</sys:String>
+                        <sys:String>FindGame</sys:String>
+                    </x:Array>
+                </Button.Resources>
+            </darkstyle:DarkButton>
+            <darkstyle:MinimizeButton Margin="125,15,45,15" Grid.Column="1"/>
+            <darkstyle:CloseButton Margin="160,15,10,15" Grid.Column="1"/>
+            <TextBlock Name="TBStatus" Margin="10,0" Text="没有提示消息"
+                       HorizontalAlignment="Right" Foreground="#FF92CAF4"
+                       VerticalAlignment="Center" Grid.Row="3" FontSize="14" Grid.Column="1"/>
+            <Button Name="BtnMonitor" Grid.Column="1" Grid.Row="2" Margin="10,25,20,210"
+                    BorderThickness="0" Foreground="White" Background="#FF424242" Padding="-1"
+                     Style="{DynamicResource DarkButtonStyleBlue}" Click="BtnMonitor_Click">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <TextBlock HorizontalAlignment="Center" Text="监视" FontSize="24">
+                        <TextBlock.Resources>
+                            <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                                <sys:String>监视</sys:String>
+                                <sys:String>Monitor</sys:String>
+                            </x:Array>
+                        </TextBlock.Resources>
+                    </TextBlock>
+                    <TextBlock Text="监视游戏里的对象属性" Grid.Row="1" FontSize="14">
+                        <TextBlock.Resources>
+                            <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                                <sys:String>监视游戏里的对象属性</sys:String>
+                                <sys:String>Objects in game</sys:String>
+                            </x:Array>
+                        </TextBlock.Resources>
+                    </TextBlock>
+                </Grid>
+            </Button>
+            <Button Name="BtnModify" Grid.Column="1" Grid.Row="2" Margin="10,117,20,117"
+                    BorderThickness="0" Foreground="White" Background="#FF424242" Padding="-1"
+                     Style="{DynamicResource DarkButtonStyleBlue}" Click="BtnModify_Click">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <TextBlock HorizontalAlignment="Center" Text="修改" FontSize="24">
+                        <TextBlock.Resources>
+                            <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                                <sys:String>修改</sys:String>
+                                <sys:String>Modify</sys:String>
+                            </x:Array>
+                        </TextBlock.Resources>
+                    </TextBlock>
+                    <TextBlock Text="修改游戏当前的行为" Grid.Row="1" FontSize="14">
+                        <TextBlock.Resources>
+                            <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                                <sys:String>修改游戏当前的行为</sys:String>
+                                <sys:String>The game behaviors</sys:String>
+                            </x:Array>
+                        </TextBlock.Resources>
+                    </TextBlock>
+                </Grid>
+            </Button>
+            <Button Name="BtnOperate" Grid.Column="1" Grid.Row="2" Margin="10,210,20,25"
+                    BorderThickness="0" Foreground="White" Background="#FF424242" Padding="-1"
+                     Style="{DynamicResource DarkButtonStyleBlue}" Click="BtnOperate_Click">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <TextBlock HorizontalAlignment="Center" Text="操作" FontSize="24">
+                        <TextBlock.Resources>
+                            <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                                <sys:String>操作</sys:String>
+                                <sys:String>Operation</sys:String>
+                            </x:Array>
+                        </TextBlock.Resources>
+                    </TextBlock>
+                    <TextBlock Text="可以对游戏执行的操作" Grid.Row="1" FontSize="14">
+                        <TextBlock.Resources>
+                            <x:Array x:Key="Lang" Type="{x:Type sys:String}">
+                                <sys:String>可以对游戏执行的操作</sys:String>
+                                <sys:String>Convenient operation</sys:String>
+                            </x:Array>
+                        </TextBlock.Resources>
+                    </TextBlock>
+                </Grid>
+            </Button>
+        </Grid>
+    </Border>
+</Window>
