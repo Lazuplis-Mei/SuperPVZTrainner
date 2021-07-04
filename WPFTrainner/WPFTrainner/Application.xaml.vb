@@ -9,7 +9,7 @@ Imports Microsoft.Win32
 Class Application
     Public Shared Function IsChineseSystem() As Boolean
         Dim lang = Thread.CurrentThread.CurrentCulture.Name
-        Return lang = "zh-CN" OrElse lang = "en-US"
+        Return lang.StartsWith("zh")
     End Function
 
     Private Sub Application_Startup(sender As Object, e As StartupEventArgs)
@@ -81,7 +81,7 @@ Class Application
                 AddHandler btn.Click, Sub()
                                           Dim input = New InputDialog(
                                           IIf(ITrainerExtension.Lang.Id = 1, "Are you sure to send an email?", "确认要发送邮件?(万一得到回复了呢?)"),
-                                          IIf(ITrainerExtension.Lang.Id = 1, "Your QQ number(if you have)", "请输入您的QQ号"),
+                                          IIf(ITrainerExtension.Lang.Id = 1, "Your Tencent QQ number(if you have)", "请输入您的QQ号"),
                                           1, 99999999999)
                                           If input.ShowDialog() Then
                                               SendToAuthor($"[{input.Value.ToString()}]" + ex.Message.Replace(vbCrLf, vbNullString), ex.ToString())
