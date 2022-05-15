@@ -829,7 +829,7 @@ Public Class MonitorWindow
         End If
     End Sub
     Private Sub CBCoinCard_SelectionChanged(sender As Object, e As SelectionChangedEventArgs)
-        If Not IsNothing(coin) AndAlso CBCardNum.IsMouseOver AndAlso CBCardType.SelectedIndex <> 53 Then
+        If Not IsNothing(coin) AndAlso CBCoinCard.IsMouseOver AndAlso CBCoinCard.SelectedIndex <> 53 Then
             coin.CardType = CBCoinCard.SelectedIndex
         End If
     End Sub
